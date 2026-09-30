@@ -25,3 +25,6 @@ secrets*
 vault/.obsidian/workspace*.json
 vault/.obsidian/cache
 vault/.trash/
+
+# Obsidian settings from opening the repo root by mistake (the vault is vault/)
+/.obsidian/

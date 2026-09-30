@@ -180,10 +180,10 @@ Implementations, Transformer Training Methods. Projects: Custom LLM Experiment, 
 Custom LLM Evaluation. Each note has a matching `# Heading`, summary, details tagged with their source section,
 source links with line numbers, and related notes with reasons.
 - Ingest run logs: [evidence/ingest/](evidence/ingest/). The first run failed and its log is kept. There's also a manual plan edit in [plan_edits.md](evidence/ingest/plan_edits.md) and my review against the originals in [review.md](evidence/ingest/review.md).
-- Obsidian screenshots, taken with the `vault/` folder open as the vault. *(Pending: I take these myself; see the checklist below.)*
-  - Open note with sources: ![note](docs/screenshots/obsidian_note.png)
-  - Index / page list: ![index](docs/screenshots/obsidian_index.png)
-  - Graph view (filter `path:wiki/`, Attachments off): ![graph](docs/screenshots/obsidian_graph.png)
+- Obsidian screenshots, taken with the `vault/` folder open as the vault:
+  - Open note (Retrieval-Augmented Generation), showing its details, each tagged with the source section it came from, and its **Sources** section. The Sources section links to `raw/Wikipedia - Retrieval-augmented generation`, with the Wikipedia permalink, license, and the sections and line numbers used. This note has no related notes, because I removed its only link during review (it was unsupported). ![note](docs/screenshots/obsidian_note.png)
+  - Index, grouped by topic (Concepts, Projects), with one-line descriptions, plus the page list in the sidebar: ![index](docs/screenshots/obsidian_index.png)
+  - Graph view with filter `path:wiki`, Attachments off, and Orphans on. This filter also matches the two raw files whose names start with "Wikipedia", so they appear as source nodes linked to the notes built from them. `path:wiki/` would show only the 7 curated notes. ![graph](docs/screenshots/obsidian_graph.png)
 
 ### Ask-mode tests (expected behavior written first in [tests/ask_tests.md](tests/ask_tests.md))
 Final setting (run 4), all local:
