@@ -156,7 +156,7 @@
           79
         ]
       },
-      "ingested": "2026-09-29T20:54:12",
+      "ingested": "2026-09-29T21:24:06",
       "plan": [
         {
           "title": "Retrieval-Augmented Generation",
@@ -792,7 +792,7 @@
       "folder": "Concepts",
       "parts": {
         "src_a442819898": {
-          "summary": "Retrieval-augmented generation (RAG) is a technique that allows large language models (LLMs) to retrieve and incorporate new information from external data sources before responding to user queries. This method improves LLM performance by blending the LLM process with document look-up processes, which helps reduce AI hallucinations and the need for frequent model retraining.",
+          "summary": "Retrieval-augmented generation (RAG) is a technique that allows large language models (LLMs) to retrieve and incorporate new information from external data sources. This process supplements the LLM's pre-existing training data, enabling them to use domain-specific or updated information. RAG improves LLM performance by blending the LLM process with information retrieval to help LLMs stick to facts and reduce AI hallucinations.",
           "details": [
             {
               "text": "Retrieval-augmented generation (RAG) is a technique that enables large language models (LLMs) to retrieve and incorporate new information from external data sources.",
@@ -803,7 +803,7 @@
               "section": "Introduction"
             },
             {
-              "text": "This allows LLMs to use domain-specific and/or updated information that is not available in the training data.",
+              "text": "These documents supplement information from the LLM's pre-existing training data.",
               "section": "Introduction"
             },
             {
@@ -811,7 +811,11 @@
               "section": "Introduction"
             },
             {
-              "text": "RAG also reduces the need to retrain LLMs with new data, saving on computational and financial costs.",
+              "text": "RAG pulls relevant text from databases, uploaded documents, or web sources.",
+              "section": "Introduction"
+            },
+            {
+              "text": "RAG reduces the need to retrain LLMs with new data, saving on computational and financial costs.",
               "section": "Introduction"
             },
             {
@@ -819,20 +823,8 @@
               "section": "Introduction"
             },
             {
-              "text": "Typically, the data to be referenced is converted into LLM embeddings, numerical representations in the form of a large vector space.",
-              "section": "Process > RAG key stages"
-            },
-            {
-              "text": "Given a user query, a document retriever is first called to select the most relevant documents that will be used to augment the query.",
-              "section": "Process > RAG key stages"
-            },
-            {
-              "text": "The model feeds this relevant retrieved information into the LLM via prompt engineering of the user's original query.",
-              "section": "Process > RAG key stages"
-            },
-            {
-              "text": "RAG is used in applications where generated responses need to be grounded in external or frequently updated information.",
-              "section": "Applications"
+              "text": "The term retrieval-augmented generation (RAG) was introduced in a 2020 paper that described combining a parametric language model with a non-parametric external memory accessed through retrieval at inference time.",
+              "section": "Introduction"
             }
           ],
           "sections": [
@@ -856,15 +848,15 @@
       "related": [
         {
           "title": "Transformer Architecture",
-          "reason": "The Transformer Architecture provides the underlying structure that is often used in the retrieval process of RAG systems."
+          "reason": "The Transformer Architecture provides the underlying structure that allows for the information retrieval component of Retrieval-Augmented Generation (RAG)."
         },
         {
           "title": "Transformer Training Methods",
-          "reason": "Transformer training methods include fine-tuning, which is a process that can be used to adapt LLMs after information has been retrieved by RAG."
+          "reason": "Transformer training methods include fine-tuning, which is a process that can be used to adapt an LLM after it has retrieved external information via RAG."
         },
         {
           "title": "Transformer Efficient Implementations",
-          "reason": "Efficient implementations of the Transformer model are relevant because optimizing the model's inference speed is crucial for the retrieval step in RAG."
+          "reason": "Efficient implementations of the Transformer model are necessary to make the retrieval and generation steps in RAG practical."
         }
       ],
       "written_sha1": "e0dbf6a28ceb00c3694a6173c0c9bce8853e59ed",

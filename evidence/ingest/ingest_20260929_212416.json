@@ -1,0 +1,48 @@
+{
+  "command": "ingest",
+  "mode": "local",
+  "model": "gemma4:e2b-it-qat",
+  "num_ctx": 8192,
+  "started": "2026-09-29T21:24:06",
+  "sources": [
+    {
+      "file": "vault/raw/Wikipedia - Retrieval-augmented generation.md",
+      "source_id": "src_a442819898",
+      "calls": [
+        {
+          "call": "write",
+          "title": "Retrieval-Augmented Generation",
+          "words_sent": 1393,
+          "truncated": true,
+          "text": "{\"summary\": \"Retrieval-augmented generation (RAG) is a technique that allows large language models (LLMs) to retrieve and incorporate new information from external data sources. This process supplements the LLM's pre-existing training data, enabling them to use domain-specific or updated information. RAG improves LLM performance by blending the LLM process with information retrieval to help LLMs stick to facts and reduce AI hallucinations.\", \"details\": [{\"text\": \"Retrieval-augmented generation (RAG) is a technique that enables large language models (LLMs) to retrieve and incorporate new information from external data sources.\", \"section\": \"S1\"}, {\"text\": \"With RAG, LLMs first refer to a specified set of documents, then respond to user queries.\", \"section\": \"S1\"}, {\"text\": \"These documents supplement information from the LLM's pre-existing training data.\", \"section\": \"S1\"}, {\"text\": \"RAG improves LLMs by incorporating information retrieval before generating responses.\", \"section\": \"S1\"}, {\"text\": \"RAG pulls relevant text from databases, uploaded documents, or web sources.\", \"section\": \"S1\"}, {\"text\": \"RAG reduces the need to retrain LLMs with new data, saving on computational and financial costs.\", \"section\": \"S1\"}, {\"text\": \"RAG allows LLMs to include sources in their responses, so users can verify the cited sources.\", \"section\": \"S1\"}, {\"text\": \"The term retrieval-augmented generation (RAG) was introduced in a 2020 paper that described combining a parametric language model with a non-parametric external memory accessed through retrieval at inference time.\", \"section\": \"S1\"}]}",
+          "seconds": 7.72,
+          "prompt_tokens": 2109,
+          "output_tokens": 360
+        }
+      ],
+      "status": "ingested"
+    }
+  ],
+  "link_calls": [
+    {
+      "call": "link",
+      "title": "Retrieval-Augmented Generation",
+      "text": "{\"related\": [\n  {\"title\": \"Transformer Architecture\", \"reason\": \"The Transformer Architecture provides the underlying structure that allows for the information retrieval component of Retrieval-Augmented Generation (RAG).\"},\n  {\"title\": \"Transformer Training Methods\", \"reason\": \"Transformer training methods include fine-tuning, which is a process that can be used to adapt an LLM after it has retrieved external information via RAG.\"},\n  {\"title\": \"Transformer Efficient Implementations\", \"reason\": \"Efficient implementations of the Transformer model are necessary to make the retrieval and generation steps in RAG practical.\"}\n]}",
+      "seconds": 2.38,
+      "prompt_tokens": 415,
+      "output_tokens": 126
+    }
+  ],
+  "embeddings_new": 0,
+  "seconds_total": 10.16,
+  "notes": [
+    "Custom LLM Evaluation",
+    "Custom LLM Experiment",
+    "Custom LLM Training Results",
+    "Retrieval-Augmented Generation",
+    "Transformer Architecture",
+    "Transformer Efficient Implementations",
+    "Transformer Training Methods"
+  ],
+  "passages_indexed": 95
+}

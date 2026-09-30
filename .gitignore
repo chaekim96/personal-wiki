@@ -28,3 +28,4 @@ vault/.trash/
 
 # Obsidian settings from opening the repo root by mistake (the vault is vault/)
 /.obsidian/
+vault/.obsidian/

@@ -1,0 +1,109 @@
+{
+  "mode": "ask",
+  "execution": "local",
+  "model": "gemma4:e2b-it-qat",
+  "time": "2026-09-29T21:24:53",
+  "question": "Who was my A3 project partner?",
+  "retrieval": "hybrid",
+  "k": 5,
+  "retrieved": [
+    {
+      "label": "P1",
+      "id": "src_bc08c49a00:001",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 1. Corpus, sources, and permissions",
+      "lines": [
+        19,
+        29
+      ],
+      "rank": 1,
+      "bm25_rank": 2,
+      "text": "- **Starter corpus:** the notebook's synthetic classroom sentences (`CORPUS = \"classroom\"`).\n  Before splitting, 160 generated sentences containing an eval prefix were withheld\n  ([eval_separation.json](evidence/experiment1_starter/run/eval_separation.json)).\n- **My additions (Experiment 2 only):** three plain-text files in `corpus/`, written for\n  this assignment. Teaching files were drafted with Claude from the category names and\n  per-category unknown-word counts, not the eval prompts or answers. Words from the public\n  examples in the brief were excluded. The notebook's leakage check flagged three lines,\n  which I deleted. I read the extension results only after the corpus was final. I reviewed\n  every file. I have permission to share them; they contain no personal or confidential data.\n\n| File | Passages | What it teaches |\n|---|---|---|\n| [grammar_tense_and_agreement.txt](corpus/grammar_tense_and_agreement.txt) | 137 | 30 verbs in four forms (paint / paints / painted / painting), time words that signal tense, singular vs. plural agreement |\n| [opposites_in_context.txt](corpus/opposites_in_context.txt) | 159 | ~33 opposite pairs (temperature, size, sound, texture, amount, time) in several frames: contrast, \"X and Y are opposites\", \"Y is the opposite of X\", \"the opposite of X is Y\" |\n| [spatial_relations.txt](corpus/spatial_relations.txt) | 59 | reversed relations inside one sentence: above/below, over/under, left/right, in front/behind, higher/lower, north/south |",
+      "dense_rank": 1
+    },
+    {
+      "label": "P2",
+      "id": "src_bc08c49a00:000",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3)",
+      "lines": [
+        3,
+        10
+      ],
+      "rank": 2,
+      "bm25_rank": 1,
+      "text": "A tiny word-level language model: Karpathy's **nanoGPT** (2 blocks, 4 heads,\n64-number embeddings, 48-token context), trained from scratch on CPU. I ran two\nexperiments with identical settings: the supplied **starter corpus**, then the\nstarter corpus plus my own teaching files for **grammar, opposites, and spatial\nrelations**. I ran the fixed 48-case language eval suite before and after training\nin both experiments. This model continues short sentences; it is not a chatbot.\n\n| | Experiment 1: starter | Experiment 2: expanded |\n|---|---|---|\n| Executed notebook | [custom_llm_executed.ipynb](evidence/experiment1_starter/custom_llm_executed.ipynb) | [custom_llm_executed.ipynb](evidence/experiment2_expanded/custom_llm_executed.ipynb) |\n| Run ID | `20260922T234208_948785Z` | `20260923T002406_749786Z` |\n| Full run folder | [evidence/experiment1_starter/run](evidence/experiment1_starter/run) | [evidence/experiment2_expanded/run](evidence/experiment2_expanded/run) |\n| Results ZIP | [ZIP](evidence/experiment1_starter/20260922T234208_948785Z.zip) | [ZIP](evidence/experiment2_expanded/20260923T002406_749786Z.zip) |",
+      "dense_rank": 4
+    },
+    {
+      "label": "P3",
+      "id": "src_bc08c49a00:002",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 1. Corpus, sources, and permissions",
+      "lines": [
+        35,
+        35
+      ],
+      "rank": 3,
+      "bm25_rank": 3,
+      "text": "- **355 new unique passages**, no warnings, no duplicates\n  ([corpus_manifest.json](evidence/experiment2_expanded/run/corpus_manifest.json)).\n- **No PDFs were used**, so there was no PDF extraction to check. All files are UTF-8 `.txt`.\n- **Design choices** (details in section 7):\n  - I used a small fixed cast of names and objects, so the vocabulary stays under the 509-type cap.\n  - Each pattern stays inside one sentence, because the notebook splits training text at every period.\n  - I excluded words from the examples published in the brief and the eval README (walk/walked, empty/full, lamp/desk, ava/ella/finn).",
+      "dense_rank": 8
+    },
+    {
+      "label": "P4",
+      "id": "src_bc08c49a00:003",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 2. My three choices and prediction",
+      "lines": [
+        45,
+        54
+      ],
+      "rank": 4,
+      "bm25_rank": 4,
+      "text": "- **Corpus:** starter first, then starter + the three files above. Nothing else changed.\n- **Training steps: 3,000.** That is enough practice for a model this small to learn the sentence\n  patterns; many more steps would raise the risk of memorizing training sentences.\n  One step = one batch of 32 passages and one weight update, not a full pass\n  (3,000 steps ≈ 23 passes over the 4,132 starter training passages).\n- **Learning rate: 0.001.** That is large enough to make progress within 3,000 steps and small enough\n  to avoid overshooting. The notebook warms the rate up over the first 100 steps and then\n  cosine-decays it to 10% of the peak.\n\n**What I predicted before each run** (full text in cell 2 of each executed notebook):",
+      "dense_rank": 7
+    },
+    {
+      "label": "P5",
+      "id": "src_bc08c49a00:008",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 4. Evidence: samples and loss",
+      "lines": [
+        113,
+        122
+      ],
+      "rank": 5,
+      "bm25_rank": 9,
+      "text": "**Samples** (same seed and settings at every checkpoint; files:\n[Exp 1](evidence/experiment1_starter/run/samples), [Exp 2](evidence/experiment2_expanded/run/samples)):\n\n| Step | Experiment 1 | Experiment 2 |\n|---|---|---|\n| 0 | (all 4 garbled lines below) | (all 4 garbled lines below) |\n| 1,500 | `our school has a question about the new educator and lesson .` · `a review of risk helped us understand the different deposit .` · `we learned about the important website during a discussion of data .` · `our school has a question about the different instructor and course .` | `the important deposit was mentioned in the payment report yesterday .` · `our store has a question about the different consumer and support .` · `a review of care helped us understand the different nurse .` · `today the kitchen focused on fruit and the local pear .` |\n| 3,000 | `our school has a question about the new educator and lesson .` · `a review of risk helped us understand the different deposit .` · `the report about the nurse explains the health in detail .` · `the consumer compared the offering after checking the price .` | `the important deposit was mentioned in the payment report yesterday .` · `our store has a question about the different consumer and support .` · `a review of care helped us understand the different nurse .` · `the different website was mentioned in the code report yesterday .` |\n\nStep-0 samples, complete (untrained, same seed):",
+      "dense_rank": 6
+    }
+  ],
+  "model_output_raw": "{\"answer\": \"The model continues short sentences and is not a chatbot [P2].\", \"citations\": [\"P2\"], \"insufficient\": false}",
+  "insufficient_flag": false,
+  "answer": "The model continues short sentences and is not a chatbot [P2].",
+  "citations": [
+    {
+      "label": "P2",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3)",
+      "lines": [
+        3,
+        10
+      ]
+    }
+  ],
+  "status": "answered",
+  "citation_problems": [],
+  "timing_s": {
+    "retrieve": 0.03,
+    "generate": 2.44,
+    "total": 2.48
+  },
+  "tokens": {
+    "prompt": 2088,
+    "output": 33
+  },
+  "instructions_file": "prompts/wiki-instructions.md",
+  "chat_history_used": false,
+  "persona_used": false
+}

@@ -206,15 +206,30 @@ and the retrieval before/after is in [retrieval_changes.md](evidence/retrieval_c
 - `search "positional encoding"`: passages and paths, no generated answer. PASS
 - Standalone `ask "What does KV caching do?"`: cited, supported. PASS
 - A claim made only in chat ("my A3 project partner was Jordan"): `ask` never used it. PASS for mode separation. With the final setting, `ask` answered a different question instead of saying the evidence is insufficient. FAIL
+- These chat checks were run online; see the offline section for what was repeated offline.
 
 ### Offline demo
-*(Pending: I run this myself with the internet off. The files below appear after the run.)*
-Recorded with Wi-Fi off, after restarting Ollama and opening a new terminal: [demo/offline_demo.md](demo/offline_demo.md).
-- Terminal output: [evidence/offline/run_offline_checks.txt](evidence/offline/run_offline_checks.txt) · full session: [evidence/offline/terminal_session.txt](evidence/offline/terminal_session.txt)
-- Recording: [evidence/offline/offline_demo.mov](evidence/offline/offline_demo.mov)
+Recorded on 2026-09-29, 21:21-21:25, with Wi-Fi off, after restarting Ollama and opening a new terminal
+([checklist](demo/offline_demo.md), [summary](evidence/offline/summary.md)).
+- Recording: [evidence/offline/offline_demo.m4v](evidence/offline/offline_demo.m4v) (214 s; compressed from 108 MB to 78 MB with macOS `avconvert` to fit GitHub's limit)
+- Terminal output: [run_offline_checks.txt](evidence/offline/run_offline_checks.txt) · full session transcript: [terminal_session.txt](evidence/offline/terminal_session.txt)
 
-All model calls go to `localhost:11434`. Ollama starts its model servers with `--offline`. The demo shows that
-`curl https://example.com` and `ollama pull` fail while every `wiki` command still works.
+| Offline check | Result |
+|---|---|
+| Network use fails visibly | `curl https://example.com`: "Could not resolve host"; `ollama pull`: "lookup registry.ollama.ai: no such host" (exit 1) |
+| `--help`, `--mode online` | help printed; online mode: "not configured" (exit 2) |
+| Ingest a source | RAG source re-ingested in 10.16 s; all 7 reviewed notes kept |
+| Ask tests 1-4 | **identical to the online run 4**: T1 PASS, T2 PASS, T3 FAIL, T4 PASS |
+| Search, standalone ask | passages only / cited answer, both PASS |
+| "Jordan" ask | did not use a chat claim; answered a different question (same as online) |
+| Chat | ran offline (3 turns: drafting a note and a to-do list); routing and conversation context worked |
+
+**Gap (stated honestly):** the required chat mode checks ("what can we do?", "what can you help me with?",
+draft then "make that shorter", stating the "Jordan" claim in chat) were run **online only**, with the same code
+and models, not in the offline recording. The first offline retrieval took 20.06 s because the embedding model
+loaded for the first time after the restart; later retrievals took 0.03-0.15 s.
+
+All model calls go to `localhost:11434`, and Ollama starts its model servers with `--offline`.
 
 ## 10. Limitation and improvement
 

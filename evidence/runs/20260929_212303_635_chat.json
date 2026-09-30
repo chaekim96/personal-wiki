@@ -1,0 +1,28 @@
+{
+  "mode": "chat",
+  "execution": "local",
+  "model": "gemma4:e2b-it-qat",
+  "time": "2026-09-29T21:23:03",
+  "session": "20260929_212245",
+  "turn": 1,
+  "message": "hello can you draft a note",
+  "routing": {
+    "needs_notes": false,
+    "search_query": "",
+    "reason": "greeting or small talk",
+    "decided_by": "code rule"
+  },
+  "retrieval": null,
+  "retrieved": [],
+  "history_messages_used": 0,
+  "reply": "Hey! Sure, I can totally help you draft a note. What are we writing about? Give me the topic and any key points you want to hit. 😊",
+  "citation_retry": false,
+  "citations": [],
+  "citation_problems": [],
+  "instructions_file": "prompts/persona.md",
+  "seconds": 6.11,
+  "tokens": {
+    "prompt": 546,
+    "output": 34
+  }
+}

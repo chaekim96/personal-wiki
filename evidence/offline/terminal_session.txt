@@ -1,0 +1,277 @@
+Script started on Tue Sep 29 21:21:42 2026
+[1m[7m%[27m[1m[0m                                                                                [0m[27m[24m[J(base) chaekim@MacBook-Pro-748 personal-wiki % [K[?2004h[?2004l
+[1m[7m%[27m[1m[0m                                                                                [0m[27m[24m[J(base) chaekim@MacBook-Pro-748 personal-wiki % [K[?2004h..[7m.venv/bin/wiki chat[27m[20D.[27m.[27mv[27me[27mn[27mv[27m/[27mb[27mi[27mn[27m/[27mw[27mi[27mk[27mi[27m [27mc[27mh[27ma[27mt[?2004l
+zsh: no such file or directory: ..venv/bin/wiki
+[1m[7m%[27m[1m[0m                                                                                [0m[27m[24m[J(base) chaekim@MacBook-Pro-748 personal-wiki % [K[?2004h[7m.venv/bin/wiki chat[27m[19D[27m.[27mv[27me[27mn[27mv[27m/[27mb[27mi[27mn[27m/[27mw[27mi[27mk[27mi[27m [27mc[27mh[27ma[27mt[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[1C[?2004l
+wiki chat · model gemma4:e2b-it-qat · mode local
+Wren (study partner) · type /help for what I can do, /exit to quit
+
+you> hello can you drfaf   aft an email       note       note
+
+
+wren> Hey! Sure, I can totally help you draft a note. What are we writing about? Give me the topic and any key points you want to hit. 😊
+      (no notes search - greeting or small talk [code rule] · 6.11 s · saved evidence/runs/20260929_212303_635_chat.json)
+
+you> you> i want to makea  to      a todo list for my class
+
+wren> No problem! To make the best to-do list, I need a little more context. What class is this for? Also, do you have any specific assignments, readings, or projects you need to focus on right now?
+
+For example, you could tell me:
+
+*   What are the main subjects?
+*   Are there any deadlines coming up?
+*   Do you have any specific tasks you feel overwhelmed by?
+
+Once I have that, I can whip up a solid list for you!
+      (no notes search - The request is for a general task (drafting a todo list) and does not depend on specific facts from the provided notes. [router model] · 3.15 s · saved evidence/runs/20260929_212319_404_chat.json)
+
+you> this is for my agentic ai class
+
+wren> Got it, Agentic AI! That sounds intense but super cool.
+
+To get this list started, tell me what's currently on your plate. Are we talking about:
+
+*   Weekly reading assignments?
+*   Specific coding tasks or experiments?
+*   Upcoming project milestones?
+
+If you don't have anything specific right now, we can start with a general structure. Suggestion: we can break it down by week or by topic (e.g., Planning, Exploration, Implementation). What sounds better to you?
+      (no notes search - The request is to draft a general to-do list for an 'agentic ai class,' which does not require specific facts from the provided technical notes. [router model] · 3.23 s · saved evidence/runs/20260929_212330_768_chat.json)
+
+you> exit    /exit
+session 20260929_212245: 3 turn(s) saved in evidence/runs/
+[1m[7m%[27m[1m[0m                                                                                [0m[27m[24m[J(base) chaekim@MacBook-Pro-748 personal-wiki % [K[?2004h[?2004l
+[1m[7m%[27m[1m[0m                                                                                [0m[27m[24m[J(base) chaekim@MacBook-Pro-748 personal-wiki % [K[?2004h[7mbash demo/run_offline_checks.sh[27m[31D[27mb[27ma[27ms[27mh[27m [27md[27me[27mm[27mo[27m/[27mr[27mu[27mn[27m_[27mo[27mf[27mf[27ml[27mi[27mn[27me[27m_[27mc[27mh[27me[27mc[27mk[27ms[27m.[27ms[27mh[?2004l
+
+==================== 0a. Internet is OFF: this request must FAIL ====================
+Tue Sep 29 21:24:05 PDT 2026
+curl: (6) Could not resolve host: example.com
+OK: internet unreachable (expected)
+
+==================== 0b. Downloading a model must FAIL offline ====================
+[?2026h[?25l[1Gpulling manifest [K[?25h[?2026l
+Error: pull model manifest: Get "https://registry.ollama.ai/v2/library/gemma4/manifests/e2b-it-qat": dial tcp: lookup registry.ollama.ai: no such host
+exit=1
+
+==================== 0c. Local model server is up (localhost only) and models are on disk ====================
+{"version":"0.35.0"}
+NAME                     ID              SIZE      MODIFIED       
+embeddinggemma:latest    85462619ee72    621 MB    56 minutes ago    
+gemma4:e2b-it-qat        07ea59a47401    4.3 GB    2 hours ago       
+
+==================== 1. wiki --help ====================
+usage: wiki [-h] [--mode {local,online}] command ...
+
+Personal wiki CLI: local Gemma + RAG over my own notes.
+
+model: gemma4:e2b-it-qat via Ollama at http://localhost:11434
+mode:  local (default; nothing leaves this computer)
+
+commands:
+  wiki ingest ./vault/raw     read raw sources, have local Gemma write linked wiki notes,
+                              rebuild vault/index.md and the retrieval passages
+  wiki chat                   talk with Wren, your study partner (persona in prompts/persona.md);
+                              remembers recent turns, searches notes only when needed
+  wiki ask "question"         standalone factual answer from your sources, with checked
+                              citations, or an explicit insufficient-evidence reply
+                              (no chat history, no persona; uses prompts/wiki-instructions.md)
+  wiki search "query" [-k 5]  show the best-matching original passages and their paths
+                              (no Gemma call; hybrid keyword + meaning search,
+                              keyword-only if Ollama is off)
+  wiki rename "Old" "New"     rename a note (or merge it into an existing note); keeps
+                              links, index, and the source->note mapping in sync
+  wiki --help                 this message
+
+files:
+  vault/raw/        original sources (never modified)
+  vault/wiki/       generated notes (review and fix them here)
+  data/             catalog.json (source IDs -> notes) and chunks.jsonl (retrieval passages)
+  prompts/          instructions sent to the model
+  evidence/         a saved log of every run
+
+positional arguments:
+  command
+    ingest              turn raw sources into wiki notes
+    chat                personal assistant with conversation context
+    ask                 grounded answer with citations (standalone)
+    search              show matching original passages (no model)
+    rename              rename a note, or merge it into an existing one
+
+options:
+  -h, --help            show this help message and exit
+  --mode {local,online}
+                        where the model runs (default: local)
+
+==================== 2. Online mode must fail visibly (local is the default) ====================
+error: online mode is not configured. Local mode is the default: omit --mode.
+exit=2
+
+==================== 3. Ingest a source offline ====================
+wiki ingest · model gemma4:e2b-it-qat · mode local
+
+vault/raw/Wikipedia - Retrieval-augmented generation.md  [src_a442819898]
+  re-using saved plan: Retrieval-Augmented Generation
+  wrote Retrieval-Augmented Generation: sent 1393 words (truncated), 8 details, 7.72 s
+
+linking 1 note(s)
+    ! kept your manual edits in vault/wiki/Projects/Custom LLM Evaluation.md (use --overwrite-edits to replace)
+  kept-edits: vault/wiki/Projects/Custom LLM Evaluation.md
+    ! kept your manual edits in vault/wiki/Projects/Custom LLM Experiment.md (use --overwrite-edits to replace)
+  kept-edits: vault/wiki/Projects/Custom LLM Experiment.md
+    ! kept your manual edits in vault/wiki/Projects/Custom LLM Training Results.md (use --overwrite-edits to replace)
+  kept-edits: vault/wiki/Projects/Custom LLM Training Results.md
+    ! kept your manual edits in vault/wiki/Concepts/Retrieval-Augmented Generation.md (use --overwrite-edits to replace)
+  kept-edits: vault/wiki/Concepts/Retrieval-Augmented Generation.md
+    ! kept your manual edits in vault/wiki/Concepts/Transformer Architecture.md (use --overwrite-edits to replace)
+  kept-edits: vault/wiki/Concepts/Transformer Architecture.md
+    ! kept your manual edits in vault/wiki/Concepts/Transformer Efficient Implementations.md (use --overwrite-edits to replace)
+  kept-edits: vault/wiki/Concepts/Transformer Efficient Implementations.md
+    ! kept your manual edits in vault/wiki/Concepts/Transformer Training Methods.md (use --overwrite-edits to replace)
+  kept-edits: vault/wiki/Concepts/Transformer Training Methods.md
+
+index.md rebuilt · 95 passages indexed (0 newly embedded) · 10.16 s total
+run log: evidence/ingest/ingest_20260929_212416.json
+
+==================== 4. Ask test 1 (direct) ====================
+wiki ask · model gemma4:e2b-it-qat · mode local
+retrieval: hybrid · 5 passages
+
+The learning rate used was 0.001 [P1].
+
+Citations:
+  [P1] vault/raw/Custom LLM Assignment README.md · My Custom LLM Experiment (MBA 290T, Assignment 3) > 2. My three choices and prediction · lines 45-54
+
+Retrieved passages:
+  [P1] Custom LLM Assignment README.md · 2. My three choices and prediction · lines 45-54
+  [P2] Custom LLM Assignment README.md · 3. My runs · lines 103-103
+  [P3] Custom LLM Assignment README.md · 3. My runs · lines 83-95
+  [P4] Custom LLM Assignment README.md · 5. Evidence: token → ID → vector → probability → gradient → update · lines 202-204
+  [P5] Custom LLM Assignment README.md · 2. My three choices and prediction · lines 65-74
+
+time: retrieve 20.06 s · generate 2.64 s · total 22.71 s
+saved: evidence/runs/20260929_212439_728_ask.json
+
+==================== 5. Ask test 2 (paraphrased) ====================
+wiki ask · model gemma4:e2b-it-qat · mode local
+retrieval: hybrid · 5 passages
+
+RAG reduces the need to retrain LLMs with new data, which saves on computational and financial costs [P2].
+
+Citations:
+  [P2] vault/raw/Wikipedia - Retrieval-augmented generation.md · Introduction · lines 8-10
+
+Retrieved passages:
+  [P1] Wikipedia - Retrieval-augmented generation.md · Challenges · lines 73-74
+  [P2] Wikipedia - Retrieval-augmented generation.md · Introduction · lines 8-10
+  [P3] Wikipedia - Retrieval-augmented generation.md · Process · lines 20-20
+  [P4] Wikipedia - Retrieval-augmented generation.md · RAG poisoning · lines 78-79
+  [P5] Wikipedia - Retrieval-augmented generation.md · RAG and LLM limitations · lines 15-16
+
+time: retrieve 0.05 s · generate 2.16 s · total 2.21 s
+saved: evidence/runs/20260929_212442_029_ask.json
+
+==================== 6. Ask test 3 (two sources) ====================
+exit
+wiki ask · model gemma4:e2b-it-qat · mode local
+retrieval: hybrid · 5 passages
+
+The smallest GPT-2 model has 12 attention heads [P2]. Multi-head attention is easier to parallelize because the computations for each attention head can be performed in parallel, which allows for fast processing [P2].
+
+Citations:
+  [P2] vault/raw/Wikipedia - Transformer architecture.md · Architecture > Scaled dot-product attention > Multihead attention · lines 1777-1777
+
+Retrieved passages:
+  [P1] Wikipedia - Transformer architecture.md · Parallelizing attention · lines 36-37
+  [P2] Wikipedia - Transformer architecture.md · Multihead attention · lines 1777-1777
+  [P3] Wikipedia - Transformer architecture.md · Multi-Query Attention · lines 4402-4593
+  [P4] Wikipedia - Transformer architecture.md · FlashAttention · lines 3993-4395
+  [P5] Custom LLM Assignment README.md · 5. Evidence: token → ID → vector → probability → gradient → update · lines 224-235
+
+time: retrieve 0.15 s · generate 3.31 s · total 3.46 s
+saved: evidence/runs/20260929_212445_570_ask.json
+
+==================== 7. Ask test 4 (unsupported) ====================
+wiki ask · model gemma4:e2b-it-qat · mode local
+retrieval: hybrid · 5 passages
+
+Insufficient evidence: the retrieved passages do not answer this question.
+Model's note: The validation loss for Experiment 1 reached 0.706 at 3,000 training steps, and for Experiment 2 reached 0.949 at 3,000 training steps. The provided data does not state the validation loss at 10,000 training steps.
+
+Citations:
+  [P2] vault/raw/Custom LLM Assignment README.md · My Custom LLM Experiment (MBA 290T, Assignment 3) > 4. Evidence: samples and loss · lines 138-169
+
+Retrieved passages:
+  [P1] Custom LLM Assignment README.md · 3. My runs · lines 83-95
+  [P2] Custom LLM Assignment README.md · 4. Evidence: samples and loss · lines 138-169
+  [P3] Custom LLM Assignment README.md · 2. My three choices and prediction · lines 45-54
+  [P4] Custom LLM Assignment README.md · 4. Evidence: samples and loss · lines 171-171
+  [P5] Custom LLM Assignment README.md · 5. Evidence: token → ID → vector → probability → gradient → update · lines 224-235
+
+time: retrieve 0.03 s · generate 3.51 s · total 3.55 s
+saved: evidence/runs/20260929_212449_205_ask.json
+
+==================== 8. Search: original passages, no answer ====================
+wiki search · model none (retrieval only) · mode local
+retrieval: hybrid
+
+[1] vault/raw/Wikipedia - Transformer architecture.md   (bm25 #3, meaning #1)
+    section: Architecture > Positional encoding  (lines 428-429)
+    A positional encoding is a fixed-size vector representation of the relative positions of tokens within a sequence: it provides the transformer model with information about where the words are in the input sequence. This induces a bias towards the order of the input sequence, so that, for example, the input sequence "man bites dog" is processed differently from "dog bites man".
+
+    The positional encoding is defined as a function of type  $f:\mathbb {R} \to \mathbb {R} ^{d}$, where  $d$ $(f(t)_{2k},f(t)_{2k+1})=(\sin(\theta ),\cos(\theta ))\quad \forall k\in \{0,1,\ldots ,d/2-1\}$ where  $\theta ={\frac {t}{r^{k}}},r=N^{2/d}$. Here,  $N$ $k$ $N=10000$. The function is in a simpler form when written as a complex function of type  $f:\mathbb {R} \to \mathbb {C} ^{d/2}$
+
+[2] vault/raw/Wikipedia - Transformer architecture.md   (bm25 #1, meaning #4)
+    section: Subsequent work > Alternative positional encodings  (lines 3084-3085)
+    Transformers may use other positional encoding methods than sinusoidal.
+
+    The original transformer paper reported using a learned positional encoding, but finding it not superior to the sinusoidal one. Later, found that causal masking itself provides enough signal to a transformer decoder that it can learn to implicitly perform absolute positional encoding without the positional encoding module.
+
+[3] vault/raw/Wikipedia - Transformer architecture.md   (bm25 #2, meaning #3)
+    section: Subsequent work > Alternative positional encodings > Relative Position Encodings  (lines 3848-3848)
+    Relative Position Encodings is similar to ALiBi, but more generic: ${\begin{aligned}{\text{Attention}}(Q,K,V)={\text{softmax}}\left({\frac {QK^{\mathrm {T} }}{\sqrt {d_{k}}}}+B\right)V\end{aligned}}$ where  $B$ $B_{i,j}=B_{i',j'}$ $i-j=i'-j'$. This is contrasted with the original sinusoidal positional encoding, which is an "absolute positional encoding".
+
+saved: evidence/runs/20260929_212449_311_search.json
+
+==================== 9. Standalone ask ====================
+wiki ask · model gemma4:e2b-it-qat · mode local
+retrieval: hybrid · 5 passages
+
+The KV caching method saves the computed key and value vectors at each attention block so that they do not need to be recomputed for each new token [P1].
+
+Citations:
+  [P1] vault/raw/Wikipedia - Transformer architecture.md · Subsequent work > Efficient implementation > KV caching · lines 3979-3981
+
+Retrieved passages:
+  [P1] Wikipedia - Transformer architecture.md · KV caching · lines 3979-3981
+  [P2] Wikipedia - Transformer architecture.md · Multi-Query Attention · lines 4402-4593
+  [P3] Wikipedia - Retrieval-augmented generation.md · Chunking · lines 65-65
+  [P4] Wikipedia - Transformer architecture.md · Knowledge distillation · lines 79-79
+  [P5] Wikipedia - Retrieval-augmented generation.md · Retriever-centric methods · lines 50-54
+
+time: retrieve 0.03 s · generate 1.97 s · total 2.0 s
+saved: evidence/runs/20260929_212451_359_ask.json
+
+==================== 10. A claim made only in chat (Jordan) must not be evidence in ask ====================
+wiki ask · model gemma4:e2b-it-qat · mode local
+retrieval: hybrid · 5 passages
+
+The model continues short sentences and is not a chatbot [P2].
+
+Citations:
+  [P2] vault/raw/Custom LLM Assignment README.md · My Custom LLM Experiment (MBA 290T, Assignment 3) · lines 3-10
+
+Retrieved passages:
+  [P1] Custom LLM Assignment README.md · 1. Corpus, sources, and permissions · lines 19-29
+  [P2] Custom LLM Assignment README.md · My Custom LLM Experiment (MBA 290T, Assignment 3) · lines 3-10
+  [P3] Custom LLM Assignment README.md · 1. Corpus, sources, and permissions · lines 35-35
+  [P4] Custom LLM Assignment README.md · 2. My three choices and prediction · lines 45-54
+  [P5] Custom LLM Assignment README.md · 4. Evidence: samples and loss · lines 113-122
+
+time: retrieve 0.03 s · generate 2.44 s · total 2.48 s
+saved: evidence/runs/20260929_212453_889_ask.json
+
+==================== done ====================
+Tue Sep 29 21:24:53 PDT 2026
+[1m[7m%[27m[1m[0m                                                                                [0m[27m[24m[J(base) chaekim@MacBook-Pro-748 personal-wiki % [K[?2004heexit[?2004l
+
+Script done on Tue Sep 29 21:24:53 2026
