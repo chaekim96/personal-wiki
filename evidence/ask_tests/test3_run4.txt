@@ -1,0 +1,17 @@
+wiki ask · model gemma4:e2b-it-qat · mode local
+retrieval: hybrid · 5 passages
+
+The smallest GPT-2 model has 12 attention heads [P2]. Multi-head attention is easier to parallelize because the computations for each attention head can be performed in parallel, which allows for fast processing [P2].
+
+Citations:
+  [P2] vault/raw/Wikipedia - Transformer architecture.md · Architecture > Scaled dot-product attention > Multihead attention · lines 1777-1777
+
+Retrieved passages:
+  [P1] Wikipedia - Transformer architecture.md · Parallelizing attention · lines 36-37
+  [P2] Wikipedia - Transformer architecture.md · Multihead attention · lines 1777-1777
+  [P3] Wikipedia - Transformer architecture.md · Multi-Query Attention · lines 4402-4593
+  [P4] Wikipedia - Transformer architecture.md · FlashAttention · lines 3993-4395
+  [P5] Custom LLM Assignment README.md · 5. Evidence: token → ID → vector → probability → gradient → update · lines 224-235
+
+time: retrieve 0.04 s · generate 3.41 s · total 3.45 s
+saved: evidence/runs/20260929_204850_680_ask.json

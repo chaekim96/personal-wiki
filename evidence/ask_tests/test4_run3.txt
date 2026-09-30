@@ -1,0 +1,18 @@
+wiki ask · model gemma4:e2b-it-qat · mode local
+retrieval: hybrid · 5 passages
+
+Insufficient evidence: the retrieved passages do not answer this question.
+Model's note: The validation loss for Experiment 1 at 3,000 training steps was 0.706 [P2]. The validation loss for Experiment 2 at 3,000 training steps was 0.949 [P2].
+
+Citations:
+  [P2] vault/raw/Custom LLM Assignment README.md · My Custom LLM Experiment (MBA 290T, Assignment 3) > 4. Evidence: samples and loss · lines 138-169
+
+Retrieved passages:
+  [P1] Custom LLM Assignment README.md · 3. My runs · lines 83-95
+  [P2] Custom LLM Assignment README.md · 4. Evidence: samples and loss · lines 138-169
+  [P3] Custom LLM Assignment README.md · 2. My three choices and prediction · lines 45-54
+  [P4] Custom LLM Assignment README.md · 4. Evidence: samples and loss · lines 171-171
+  [P5] Custom LLM Assignment README.md · 5. Evidence: token → ID → vector → probability → gradient → update · lines 224-235
+
+time: retrieve 0.05 s · generate 3.45 s · total 3.51 s
+saved: evidence/runs/20260929_204825_089_ask.json

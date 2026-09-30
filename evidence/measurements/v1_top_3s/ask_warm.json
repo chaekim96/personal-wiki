@@ -1,0 +1,44 @@
+{
+  "label": "ask_warm",
+  "command": "wiki ask What learning rate did I use in Assignment 3?",
+  "cold_start": false,
+  "wall_seconds": 3.81,
+  "exit_code": 0,
+  "cli_process_max_rss_mb": 28.8,
+  "ollama_peak_total_footprint_mb": 1698.0,
+  "ollama_peak_at_s": 5.87,
+  "ollama_peak_per_process_mb": {
+    "llama-server 3646b4c147cd": 1639.0,
+    "ollama serve": 25.0,
+    "llama-server --embedding 0800cbac9c20": 102.0
+  },
+  "samples": 2,
+  "before": {
+    "free": "System-wide memory free percentage: 23%",
+    "ollama_ps": "NAME                 ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \ngemma4:e2b-it-qat    07ea59a47401    3.6 GB    100% GPU     8192       4 minutes from now    \n"
+  },
+  "after": {
+    "free": "System-wide memory free percentage: 19%",
+    "ollama_ps": "NAME                     ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \ngemma4:e2b-it-qat        07ea59a47401    3.6 GB    100% GPU     8192       4 minutes from now    \nembeddinggemma:latest    85462619ee72    679 MB    100% GPU     2048       4 minutes from now    \n"
+  },
+  "command_stdout_tail": "wiki ask \u00b7 model gemma4:e2b-it-qat \u00b7 mode local\nretrieval: hybrid \u00b7 5 passages\n\nThe learning rate used was 0.001 [P1].\n\nCitations:\n  [P1] vault/raw/Custom LLM Assignment README.md \u00b7 My Custom LLM Experiment (MBA 290T, Assignment 3) > 2. My three choices and prediction \u00b7 lines 45-54\n\nRetrieved passages:\n  [P1] Custom LLM Assignment README.md \u00b7 2. My three choices and prediction \u00b7 lines 45-54\n  [P2] Custom LLM Assignment README.md \u00b7 3. My runs \u00b7 lines 103-103\n  [P3] Custom LLM Assignment README.md \u00b7 3. My runs \u00b7 lines 83-95\n  [P4] Custom LLM Assignment README.md \u00b7 5. Evidence: token \u2192 ID \u2192 vector \u2192 probability \u2192 gradient \u2192 update \u00b7 lines 202-204\n  [P5] Custom LLM Assignment README.md \u00b7 2. My three choices and prediction \u00b7 lines 65-74\n\ntime: retrieve 1.09 s \u00b7 generate 2.64 s \u00b7 total 3.73 s\nsaved: evidence/runs/20260929_205231_297_ask.json\n",
+  "sample_series": [
+    {
+      "t": 2.68,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1639.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1664.0
+    },
+    {
+      "t": 5.87,
+      "per_process_mb": {
+        "llama-server --embedding 0800cbac9c20": 102.0,
+        "llama-server 3646b4c147cd": 1571.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1698.0
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "mode": "ask",
+  "execution": "local",
+  "model": "gemma4:e2b-it-qat",
+  "time": "2026-09-29T20:47:19",
+  "question": "What does KV caching do?",
+  "retrieval": "hybrid",
+  "k": 5,
+  "retrieved": [
+    {
+      "label": "P1",
+      "id": "src_f00a37228f:039",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "Subsequent work > Efficient implementation > KV caching",
+      "lines": [
+        3979,
+        3981
+      ],
+      "rank": 1,
+      "bm25_rank": 1,
+      "text": "When an autoregressive transformer is used for inference, such as generating text, the query vector is different at each step, but the already-computed key and value vectors are always the same. The KV caching method saves the computed key and value vectors at each attention block, so that they are not recomputed at each new token. PagedAttention applies memory paging to KV caching.\n\nIf a transformer is used with a baked-in prompt, such as [\"You are a customer support agent...\"], then the key and value vectors can be computed for the prompt, and saved on disk. The saving in compute is significant when the model is used for many short real-time interactions, such as in online chatbots.\n\nIn general, when a user uses an autoregressive transformer to generate a continuation to a sequence of tokens, the model would first perform a forward-pass on this sequence, whereby the KV caches over this sequence are computed. This is called prefilling. Hyperscalers serving large Transformer models may use disaggregated inference, wherein prefilling and decoding are performed on separately specialized hardware.",
+      "dense_rank": 1
+    },
+    {
+      "label": "P2",
+      "id": "src_f00a37228f:044",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "Subsequent work > Efficient implementation > Multi-Query Attention",
+      "lines": [
+        4402,
+        4593
+      ],
+      "rank": 2,
+      "bm25_rank": 2,
+      "text": "Multi-Query Attention changes the Multihead Attention mechanism. Whereas normally,\n\n${\\text{MultiheadAttention}}(Q,K,V)={\\text{Concat}}_{i\\in [n_{\\text{heads}}]}\\left({\\text{Attention}}(XW_{i}^{Q},XW_{i}^{K},XW_{i}^{V})\\right)W^{O}$ with Multi-Query Attention, there is just one  $W^{K},W^{V}$, thus:\n\n${\\text{MultiQueryAttention}}(Q,K,V)={\\text{Concat}}_{i\\in [n_{\\text{heads}}]}\\left({\\text{Attention}}(XW_{i}^{Q},XW^{K},XW^{V})\\right)W^{O}$\n\nThis has a neutral effect on model quality and training speed, but increases inference speed.\n\nMore generally, grouped-query attention (GQA) partitions attention heads into groups, each of which shares the key-value pair. MQA is GQA with one group, while standard Multihead Attention is GQA with the maximal number of groups.\n\nMultihead Latent Attention (MLA) is a low-rank approximation to standard MHA. Specifically, each hidden vector, before entering the attention mechanism, is first projected to two low-dimensional spaces (\"latent space\"), one for query and one for key-value (KV vector). This design minimizes the KV cache, as only the low-dimensional KV vector needs to be cached.",
+      "dense_rank": 2
+    },
+    {
+      "label": "P3",
+      "id": "src_a442819898:010",
+      "source": "vault/raw/Wikipedia - Retrieval-augmented generation.md",
+      "section": "Improvements > Chunking",
+      "lines": [
+        65,
+        65
+      ],
+      "rank": 3,
+      "bm25_rank": 41,
+      "text": "Chunking involves various strategies for breaking up the data into vectors so the retriever can find details in it.",
+      "dense_rank": 8
+    },
+    {
+      "label": "P4",
+      "id": "src_f00a37228f:011",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "Training > Knowledge distillation",
+      "lines": [
+        79,
+        79
+      ],
+      "rank": 4,
+      "bm25_rank": 56,
+      "text": "Knowledge distillation is a method for training a smaller model, called a \"student\", to reproduce the output behavior of a larger \"teacher\" model. In transformer models, the student can be trained using the teacher's output probability distribution, intermediate representations, or attention patterns in addition to the original training labels. Distillation can lower computational and memory requirements of deployment while keeping most of the teacher model's performance on a specified task.",
+      "dense_rank": 4
+    },
+    {
+      "label": "P5",
+      "id": "src_a442819898:008",
+      "source": "vault/raw/Wikipedia - Retrieval-augmented generation.md",
+      "section": "Improvements > Retriever-centric methods",
+      "lines": [
+        50,
+        54
+      ],
+      "rank": 5,
+      "bm25_rank": 39,
+      "text": "These methods aim to enhance the quality of document retrieval in vector databases:\n\nPre-training the retriever using the Inverse Cloze Task (ICT), a technique that helps the model learn retrieval patterns by predicting masked text within documents.\n\nSupervised retriever optimization aligns retrieval probabilities with the generator model's likelihood distribution. This involves retrieving the top-k vectors for a given prompt, scoring the generated response's perplexity, and minimizing KL divergence between the retriever's selections and the model's likelihoods to refine retrieval.\n\nReranking techniques can refine retriever performance by prioritizing the most relevant retrieved documents during training.",
+      "dense_rank": 13
+    }
+  ],
+  "model_output_raw": "{\"insufficient\": false, \"answer\": \"The KV caching method saves the computed key and value vectors at each attention block so that they do not need to be recomputed for each new token [P1].\", \"citations\": [\"P1\"]}",
+  "insufficient_flag": false,
+  "answer": "The KV caching method saves the computed key and value vectors at each attention block so that they do not need to be recomputed for each new token [P1].",
+  "citations": [
+    {
+      "label": "P1",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "Subsequent work > Efficient implementation > KV caching",
+      "lines": [
+        3979,
+        3981
+      ]
+    }
+  ],
+  "status": "answered",
+  "citation_problems": [],
+  "timing_s": {
+    "retrieve": 0.04,
+    "generate": 2.15,
+    "total": 2.19
+  },
+  "tokens": {
+    "prompt": 1226,
+    "output": 52
+  },
+  "instructions_file": "prompts/wiki-instructions.md",
+  "chat_history_used": false,
+  "persona_used": false
+}

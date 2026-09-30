@@ -1,0 +1,117 @@
+{
+  "command": "ingest",
+  "mode": "local",
+  "model": "gemma4:e2b-it-qat",
+  "num_ctx": 8192,
+  "started": "2026-09-29T19:41:17",
+  "sources": [
+    {
+      "file": "vault/raw/Custom LLM Assignment README.md",
+      "source_id": "src_bc08c49a00",
+      "calls": [
+        {
+          "call": "plan",
+          "attempt": 1,
+          "text": "{\"subjects\": [\n    {\n        \"title\": \"Custom LLM Experiment Overview\",\n        \"folder\": \"Projects\",\n        \"sections\": [\n            1,\n            2,\n            3,\n            4,\n            5,\n            6,\n            7,\n            8,\n            9,\n            10\n        ]\n    }\n]}",
+          "seconds": 10.29,
+          "prompt_tokens": 624,
+          "output_tokens": 83
+        },
+        {
+          "call": "write",
+          "title": "Custom LLM Experiment Overview",
+          "words_sent": 1444,
+          "truncated": true,
+          "text": "{\n  \"summary\": \"This overview details a custom Large Language Model experiment involving a tiny word-level language model, Karpathy's nanoGPT. The experiment involved two runs: one with a starter corpus and one expanded with additional teaching files. The model was trained from scratch on CPU.\",\n  \"details\": [\n    {\n      \"text\": \"S1\",\n      \"section\": \"S1\"\n    },\n    {\n      \"text\": \"S2\",\n      \"section\": \"S2\"\n    },\n    {\n      \"text\": \"S3\",\n      \"section\": \"S3\"\n    },\n    {\n      \"text\": \"S4\",\n      \"section\": \"S4\"\n    },\n    {\n      \"text\": \"S5\",\n      \"section\": \"S5\"\n    }\n  ]\n}",
+          "seconds": 6.38,
+          "prompt_tokens": 3144,
+          "output_tokens": 192
+        }
+      ],
+      "status": "ingested"
+    },
+    {
+      "file": "vault/raw/Wikipedia - Retrieval-augmented generation.md",
+      "source_id": "src_a442819898",
+      "calls": [
+        {
+          "call": "plan",
+          "attempt": 1,
+          "text": "{\"subjects\": [\n    {\n        \"title\": \"Retrieval-Augmented Generation\",\n        \"folder\": \"Concepts\",\n        \"sections\": [\n            1,\n            2,\n            3,\n            4,\n            5,\n            6,\n            7,\n            8,\n            9,\n            10,\n            11,\n            12,\n            13\n        ]\n    }\n]}",
+          "seconds": 2.03,
+          "prompt_tokens": 404,
+          "output_tokens": 100
+        },
+        {
+          "call": "write",
+          "title": "Retrieval-Augmented Generation",
+          "words_sent": 1393,
+          "truncated": true,
+          "text": "{\n  \"summary\": \"Retrieval-Augmented Generation (RAG) is a technique that allows large language models (LLMs) to retrieve and incorporate new information from external data sources before responding to user queries. This method improves LLM performance by blending the LLM process with document look-up processes, which helps reduce AI hallucinations and lowers the need for frequent model retraining.\",\n  \"details\": [\n    {\n      \"text\": \"RAG is a technique that enables large language models (LLMs) to retrieve and incorporate new information from external data sources.\",\n      \"section\": \"S1\"\n    },\n    {\n      \"text\": \"RAG improves LLMs by incorporating information retrieval before generating responses.\",\n      \"section\": \"S1\"\n    },\n    {\n      \"text\": \"RAG pulls relevant text from databases, uploaded documents, or web sources.\",\n      \"section\": \"S1\"\n    },\n    {\n      \"text\": \"RAG reduces the need to retrain LLMs with new data, saving on computational and financial costs.\",\n      \"section\": \"S1\"\n    },\n    {\n      \"text\": \"RAG allows LLMs to include sources in their responses, enabling users to verify cited sources for greater transparency.\",\n      \"section\": \"S1\"\n    },\n    {\n      \"text\": \"The process involves converting data into LLM embeddings, storing them in a vector database, and using a document retriever to select relevant documents.\",\n      \"section\": \"S4\"\n    },\n    {\n      \"text\": \"Improvements can focus on encoding text as dense or sparse vectors, and optimizing vector similarity calculations.\",\n      \"section\": \"S7\"\n    },\n    {\n      \"text\": \"Hybrid search can combine traditional text search results with text chunks linked to retrieved vectors before feeding them to the language model.\",\n      \"section\": \"S11\"\n    }\n  ]\n}",
+          "seconds": 8.87,
+          "prompt_tokens": 2044,
+          "output_tokens": 423
+        }
+      ],
+      "status": "ingested"
+    },
+    {
+      "file": "vault/raw/Wikipedia - Transformer architecture.md",
+      "source_id": "src_f00a37228f",
+      "calls": [
+        {
+          "call": "plan",
+          "attempt": 1,
+          "text": "{\"subjects\": [{\"title\": \"Transformer Architecture\", \"folder\": \"Concepts\", \"sections\": [1, 11, 16, 18, 19, 21, 22, 23, 25]}]}",
+          "seconds": 1.81,
+          "prompt_tokens": 947,
+          "output_tokens": 57
+        },
+        {
+          "call": "write",
+          "title": "Transformer Architecture",
+          "words_sent": 1287,
+          "truncated": true,
+          "text": "{\n  \"summary\": \"The Transformer is a family of artificial neural network architectures based on the multi-head attention mechanism. It converts input data into a sequence of numerical tokens and processes them through layers that involve attention and feedforward layers. Modern designs are categorized into encoder-only, decoder-only, and encoder-decoder variants.\",\n  \"details\": [\n    {\n      \"text\": \"S1\",\n      \"section\": \"Introduction\"\n    },\n    {\n      \"text\": \"S2\",\n      \"section\": \"Architecture\"\n    },\n    {\n      \"text\": \"S3\",\n      \"section\": \"Architecture > Encoder–decoder (overview)\"\n    },\n    {\n      \"text\": \"S4\",\n      \"section\": \"Architecture > Scaled dot-product attention > Attention head\"\n    },\n    {\n      \"text\": \"S5\",\n      \"section\": \"Architecture > Scaled dot-product attention > Multihead attention\"\n    },\n    {\n      \"text\": \"S6\",\n      \"section\": \"Architecture > Encoder\"\n    }\n  ]\n}",
+          "seconds": 6.45,
+          "prompt_tokens": 2475,
+          "output_tokens": 247
+        }
+      ],
+      "status": "ingested"
+    }
+  ],
+  "link_calls": [
+    {
+      "call": "link",
+      "title": "Custom LLM Experiment Overview",
+      "text": "{\"related\": [\n  {\"title\": \"Transformer Architecture\", \"reason\": \"The custom LLM experiment likely utilizes the Transformer architecture, as nanoGPT is a word-level language model based on this architecture.\"},\n  {\"title\": \"Retrieval-Augmented Generation\", \"reason\": \"RAG could be a technique used to augment the knowledge of the custom LLM experiment with external data.\"}\n]}",
+      "seconds": 1.65,
+      "prompt_tokens": 245,
+      "output_tokens": 85
+    },
+    {
+      "call": "link",
+      "title": "Retrieval-Augmented Generation",
+      "text": "{\"related\": [{\"title\": \"Transformer Architecture\", \"reason\": \"The Transformer architecture is a core component often used in the underlying models that are augmented by Retrieval-Augmented Generation.\"}]}",
+      "seconds": 0.93,
+      "prompt_tokens": 251,
+      "output_tokens": 39
+    },
+    {
+      "call": "link",
+      "title": "Transformer Architecture",
+      "text": "{\"related\": [\n  {\"title\": \"Custom LLM Experiment Overview\", \"reason\": \"The Transformer architecture is the foundational architecture for many modern Large Language Models (LLMs) that are often the subject of custom experiments like nanoGPT.\"},\n  {\"title\": \"Retrieval-Augmented Generation\", \"reason\": \"The Transformer architecture is the core component used within many modern LLMs that are enhanced by Retrieval-Augmented Generation (RAG) techniques.\"}\n]}",
+      "seconds": 1.81,
+      "prompt_tokens": 259,
+      "output_tokens": 98
+    }
+  ],
+  "seconds_total": 40.27,
+  "notes": [
+    "Custom LLM Experiment Overview",
+    "Retrieval-Augmented Generation",
+    "Transformer Architecture"
+  ],
+  "passages_indexed": 95
+}

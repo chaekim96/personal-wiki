@@ -1,0 +1,83 @@
+{
+  "command": "ingest",
+  "mode": "local",
+  "model": "gemma4:e2b-it-qat",
+  "num_ctx": 8192,
+  "started": "2026-09-29T19:56:14",
+  "sources": [
+    {
+      "file": "vault/raw/Custom LLM Assignment README.md",
+      "source_id": "src_bc08c49a00",
+      "calls": [
+        {
+          "call": "write",
+          "title": "Custom LLM Experiment",
+          "words_sent": 1197,
+          "truncated": false,
+          "text": "{\"summary\": \"This experiment involved training a tiny word-level language model, Karpathy's nanoGPT, from scratch on a CPU. Two experiments were conducted, one using a starter corpus and another using the starter corpus augmented with custom teaching files. The model was tested using a fixed 48-case language evaluation suite.\", \"details\": [{\"text\": \"The model is a tiny word-level language model: Karpathy's nanoGPT (2 blocks, 4 heads, 64-number embeddings, 48-token context), trained from scratch on CPU.\", \"section\": \"S1\"}, {\"text\": \"Two experiments were run with identical settings: the supplied starter corpus, then the starter corpus plus my own teaching files for grammar, opposites, and spatial relations.\", \"section\": \"S1\"}, {\"text\": \"The fixed 48-case language eval suite was run before and after training in both experiments.\", \"section\": \"S1\"}, {\"text\": \"Experiment 1 used the starter corpus, while Experiment 2 used the starter corpus plus three plain-text files.\", \"section\": \"S2\"}, {\"text\": \"The custom files included passages on grammar, opposites, and spatial relations.\", \"section\": \"S2\"}, {\"text\": \"Training steps were set to 3,000, which was considered enough practice for the model to learn sentence patterns.\", \"section\": \"S3\"}, {\"text\": \"The vocabulary size for Experiment 1 was 136, and for Experiment 2 it was 481.\", \"section\": \"S4\"}]}",
+          "seconds": 5.33,
+          "prompt_tokens": 2825,
+          "output_tokens": 332
+        },
+        {
+          "call": "write",
+          "title": "Custom LLM Training Results",
+          "words_sent": 1163,
+          "truncated": false,
+          "text": "{\"summary\": \"This section compares the results of Custom LLM Training Experiments 1 and 2 based on temperature settings. The comparison shows how different temperature values affect the generated output when using the same trained weights and starting token.\", \"details\": [{\"text\": \"Same trained weights, same starting token and sampling seed; only the temperature differs.\", \"section\": \"S2\"}, {\"text\": \"In Experiment 1, temperature barely mattered.\", \"section\": \"S2\"}, {\"text\": \"0.8 and 1.2 gave identical samples in Experiment 1.\", \"section\": \"S2\"}, {\"text\": \"At 0.3, one sample swapped a single word (deposit → investment) and one became a different sentence entirely in Experiment 1.\", \"section\": \"S2\"}, {\"text\": \"In Experiment 2, 1.2 produced a garbled line (\\\"laughs orange a review of harvest .\\\" ), because a 481-word vocabulary has more low-probability tail to sample from.\", \"section\": \"S2\"}, {\"text\": \"Temperature changes the odds before the pick. Low makes the top word win more, high spreads it out.\", \"section\": \"S2\"}]}",
+          "seconds": 3.98,
+          "prompt_tokens": 2131,
+          "output_tokens": 251
+        },
+        {
+          "call": "write",
+          "title": "Custom LLM Evaluation",
+          "words_sent": 1399,
+          "truncated": false,
+          "text": "{\"summary\": \"This document details a custom LLM experiment involving fixed language evaluations across different corpus stages. The evaluation scoring involves checking if the correct word has the highest probability among four choices, with ties resulting in a score of 0.\", \"details\": [{\"text\": \"The scoring rule states that only the prefix goes into the model, excluding answer choices or keys.\", \"section\": \"S1\"}, {\"text\": \"A case scores 1 if the correct word has the highest probability among its four choices, and 0 otherwise, with ties resulting in 0.\", \"section\": \"S1\"}, {\"text\": \"Any unknown prompt or answer word marks the case `out_of_vocabulary`, which counts as 0 in the all-case rate.\", \"section\": \"S1\"}, {\"text\": \"A separate free continuation is generated for every case with a temperature of 0.8, per-case seed, and 24 tokens, and it is saved but not scored.\", \"section\": \"S1\"}, {\"text\": \"The coverage rose from 24/48 to 26/48 because my files made 1 opposites case and 1 spatial case scorable.\", \"section\": \"S1\"}, {\"text\": \"Training cannot change coverage; only corpus text can.\", \"section\": \"S1\"}, {\"text\": \"The model learned templates, not language, with 16/16 success on familiar patterns, but new wording was mostly guessing.\", \"section\": \"S2\"}]}",
+          "seconds": 5.0,
+          "prompt_tokens": 3045,
+          "output_tokens": 314
+        }
+      ],
+      "status": "ingested"
+    }
+  ],
+  "link_calls": [
+    {
+      "call": "link",
+      "title": "Custom LLM Evaluation",
+      "text": "{\"related\": [\n  {\"title\": \"Custom LLM Experiment\", \"reason\": \"The Custom LLM Experiment details an experiment involving fixed language evaluations, which relates to the custom LLM evaluation described in the current note.\"},\n  {\"title\": \"Transformer Architecture\", \"reason\": \"The Transformer Architecture describes the components of the model, which are relevant to the underlying structure of the LLM used in the custom LLM experiment.\"},\n  {\"title\": \"Transformer Training Methods\", \"reason\": \"Transformer Training Methods cover techniques for pretraining and fine-tuning, which are relevant to the training aspects of the custom LLM experiment.\"}\n]}",
+      "seconds": 2.45,
+      "prompt_tokens": 388,
+      "output_tokens": 133
+    },
+    {
+      "call": "link",
+      "title": "Custom LLM Experiment",
+      "text": "{\"related\": [\n  {\"title\": \"Transformer Architecture\", \"reason\": \"The Custom LLM Experiment involves training a word-level language model, which is built upon the Transformer Architecture.\"},\n  {\"title\": \"Transformer Training Methods\", \"reason\": \"The Custom LLM Experiment details training experiments, which fall under the scope of Transformer Training Methods.\"},\n  {\"title\": \"Custom LLM Evaluation\", \"reason\": \"The Custom LLM Experiment is a specific instance of a custom LLM experiment involving fixed language evaluations.\"}\n]}",
+      "seconds": 2.13,
+      "prompt_tokens": 399,
+      "output_tokens": 111
+    },
+    {
+      "call": "link",
+      "title": "Custom LLM Training Results",
+      "text": "{\"related\": [\n  {\"title\": \"Custom LLM Experiment\", \"reason\": \"The Custom LLM Training Results compare experiments based on temperature settings, which is a specific aspect of a Custom LLM Experiment.\"},\n  {\"title\": \"Transformer Training Methods\", \"reason\": \"The comparison of training results based on temperature settings relates to the techniques used for stabilizing training and fine-tuning mentioned in Transformer Training Methods.\"},\n  {\"title\": \"Custom LLM Evaluation\", \"reason\": \"The Custom LLM Training Results compare results based on temperature settings, which is a factor considered during Custom LLM Evaluation.\"}\n]}",
+      "seconds": 2.36,
+      "prompt_tokens": 382,
+      "output_tokens": 128
+    }
+  ],
+  "seconds_total": 21.29,
+  "notes": [
+    "Custom LLM Evaluation",
+    "Custom LLM Experiment",
+    "Custom LLM Training Results",
+    "Retrieval-Augmented Generation",
+    "Transformer Architecture",
+    "Transformer Efficient Implementations",
+    "Transformer Training Methods"
+  ],
+  "passages_indexed": 95
+}

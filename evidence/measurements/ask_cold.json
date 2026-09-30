@@ -1,0 +1,93 @@
+{
+  "label": "ask_cold",
+  "command": "wiki ask What learning rate did I use in Assignment 3?",
+  "cold_start": true,
+  "wall_seconds": 8.42,
+  "exit_code": 0,
+  "cli_process_max_rss_mb": 28.8,
+  "ollama_peak_total_footprint_mb": 1432.0,
+  "ollama_peak_at_s": 10.09,
+  "ollama_peak_per_process_mb": {
+    "ollama serve [70235]": 25.0,
+    "llama-server 3646b4c147cd [76006]": 1305.0,
+    "llama-server --embedding 0800cbac9c20 [76004]": 104.0
+  },
+  "samples": 6,
+  "end_breakdown": {
+    "ollama serve": {
+      "footprint_mb": 25,
+      "mapped_file": "0 B"
+    },
+    "llama-server --embedding 0800cbac9c20": {
+      "footprint_mb": 102,
+      "mapped_file": "587 MB"
+    },
+    "llama-server 3646b4c147cd": {
+      "footprint_mb": 1228,
+      "mapped_file": "1938 MB"
+    }
+  },
+  "before": {
+    "free": "System-wide memory free percentage: 48%",
+    "ollama_ps": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL \n"
+  },
+  "after": {
+    "free": "System-wide memory free percentage: 18%",
+    "ollama_ps": "NAME                     ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \ngemma4:e2b-it-qat        07ea59a47401    3.6 GB    100% GPU     8192       4 minutes from now    \nembeddinggemma:latest    85462619ee72    679 MB    100% GPU     2048       4 minutes from now    \n"
+  },
+  "command_stdout_tail": "wiki ask \u00b7 model gemma4:e2b-it-qat \u00b7 mode local\nretrieval: hybrid \u00b7 5 passages\n\nThe learning rate used was 0.001 [P1].\n\nCitations:\n  [P1] vault/raw/Custom LLM Assignment README.md \u00b7 My Custom LLM Experiment (MBA 290T, Assignment 3) > 2. My three choices and prediction \u00b7 lines 45-54\n\nRetrieved passages:\n  [P1] Custom LLM Assignment README.md \u00b7 2. My three choices and prediction \u00b7 lines 45-54\n  [P2] Custom LLM Assignment README.md \u00b7 3. My runs \u00b7 lines 103-103\n  [P3] Custom LLM Assignment README.md \u00b7 3. My runs \u00b7 lines 83-95\n  [P4] Custom LLM Assignment README.md \u00b7 5. Evidence: token \u2192 ID \u2192 vector \u2192 probability \u2192 gradient \u2192 update \u00b7 lines 202-204\n  [P5] Custom LLM Assignment README.md \u00b7 2. My three choices and prediction \u00b7 lines 65-74\n\ntime: retrieve 0.85 s \u00b7 generate 7.47 s \u00b7 total 8.32 s\nsaved: evidence/runs/20260929_205542_076_ask.json\n",
+  "sample_series": [
+    {
+      "t": 3.72,
+      "per_process_mb": {
+        "ollama serve [70235]": 25.0
+      },
+      "total_mb": 25.0
+    },
+    {
+      "t": 5.0,
+      "per_process_mb": {
+        "ollama serve [70235]": 25.0,
+        "llama-server 3646b4c147cd [76006]": 157.0,
+        "llama-server --embedding 0800cbac9c20 [76004]": 104.0
+      },
+      "total_mb": 286.0
+    },
+    {
+      "t": 6.3,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd [76006]": 651.0,
+        "llama-server --embedding 0800cbac9c20 [76004]": 102.0,
+        "ollama serve [70235]": 25.0
+      },
+      "total_mb": 778.0
+    },
+    {
+      "t": 7.59,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd [76006]": 1287.0,
+        "ollama serve [70235]": 25.0,
+        "llama-server --embedding 0800cbac9c20 [76004]": 102.0
+      },
+      "total_mb": 1414.0
+    },
+    {
+      "t": 8.83,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd [76006]": 1298.0,
+        "llama-server --embedding 0800cbac9c20 [76004]": 102.0,
+        "ollama serve [70235]": 25.0
+      },
+      "total_mb": 1425.0
+    },
+    {
+      "t": 10.09,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd [76006]": 1305.0,
+        "ollama serve [70235]": 25.0,
+        "llama-server --embedding 0800cbac9c20 [76004]": 102.0
+      },
+      "total_mb": 1432.0
+    }
+  ]
+}

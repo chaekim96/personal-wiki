@@ -1,0 +1,17 @@
+wiki ask · model gemma4:e2b-it-qat · mode local
+retrieval: hybrid · 5 passages
+
+The KV caching method saves the computed key and value vectors at each attention block so that they do not need to be recomputed for each new token [P1].
+
+Citations:
+  [P1] vault/raw/Wikipedia - Transformer architecture.md · Subsequent work > Efficient implementation > KV caching · lines 3979-3981
+
+Retrieved passages:
+  [P1] Wikipedia - Transformer architecture.md · KV caching · lines 3979-3981
+  [P2] Wikipedia - Transformer architecture.md · Multi-Query Attention · lines 4402-4593
+  [P3] Wikipedia - Retrieval-augmented generation.md · Chunking · lines 65-65
+  [P4] Wikipedia - Transformer architecture.md · Knowledge distillation · lines 79-79
+  [P5] Wikipedia - Retrieval-augmented generation.md · Retriever-centric methods · lines 50-54
+
+time: retrieve 0.05 s · generate 2.12 s · total 2.17 s
+saved: evidence/runs/20260929_204741_957_ask.json

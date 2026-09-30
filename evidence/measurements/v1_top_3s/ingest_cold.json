@@ -1,0 +1,265 @@
+{
+  "label": "ingest_cold",
+  "command": "wiki ingest ./vault/raw --force",
+  "cold_start": true,
+  "wall_seconds": 90.69,
+  "exit_code": 0,
+  "cli_process_max_rss_mb": 26.4,
+  "ollama_peak_total_footprint_mb": 1653.0,
+  "ollama_peak_at_s": 90.04,
+  "ollama_peak_per_process_mb": {
+    "ollama serve": 25.0,
+    "llama-server 3646b4c147cd": 1628.0
+  },
+  "samples": 30,
+  "before": {
+    "free": "System-wide memory free percentage: 39%",
+    "ollama_ps": "NAME    ID    SIZE    PROCESSOR    CONTEXT    UNTIL \n"
+  },
+  "after": {
+    "free": "System-wide memory free percentage: 23%",
+    "ollama_ps": "NAME                 ID              SIZE      PROCESSOR    CONTEXT    UNTIL              \ngemma4:e2b-it-qat    07ea59a47401    3.6 GB    100% GPU     8192       4 minutes from now    \n"
+  },
+  "command_stdout_tail": "ansformer Efficient Implementations: sent 1218 words, 13 details, 11.92 s\n\nlinking 7 note(s)\n    ! kept your manual edits in vault/wiki/Projects/Custom LLM Evaluation.md (use --overwrite-edits to replace)\n  kept-edits: vault/wiki/Projects/Custom LLM Evaluation.md\n    ! kept your manual edits in vault/wiki/Projects/Custom LLM Experiment.md (use --overwrite-edits to replace)\n  kept-edits: vault/wiki/Projects/Custom LLM Experiment.md\n    ! kept your manual edits in vault/wiki/Projects/Custom LLM Training Results.md (use --overwrite-edits to replace)\n  kept-edits: vault/wiki/Projects/Custom LLM Training Results.md\n    ! kept your manual edits in vault/wiki/Concepts/Retrieval-Augmented Generation.md (use --overwrite-edits to replace)\n  kept-edits: vault/wiki/Concepts/Retrieval-Augmented Generation.md\n    ! kept your manual edits in vault/wiki/Concepts/Transformer Architecture.md (use --overwrite-edits to replace)\n  kept-edits: vault/wiki/Concepts/Transformer Architecture.md\n    ! kept your manual edits in vault/wiki/Concepts/Transformer Efficient Implementations.md (use --overwrite-edits to replace)\n  kept-edits: vault/wiki/Concepts/Transformer Efficient Implementations.md\n    ! kept your manual edits in vault/wiki/Concepts/Transformer Training Methods.md (use --overwrite-edits to replace)\n  kept-edits: vault/wiki/Concepts/Transformer Training Methods.md\n\nindex.md rebuilt \u00b7 95 passages indexed (0 newly embedded) \u00b7 90.42 s total\nrun log: evidence/ingest/ingest_20260929_205224.json\n",
+  "sample_series": [
+    {
+      "t": 2.53,
+      "per_process_mb": {
+        "ollama serve": 25.0
+      },
+      "total_mb": 25.0
+    },
+    {
+      "t": 5.33,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 656.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 681.0
+    },
+    {
+      "t": 8.78,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1307.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1332.0
+    },
+    {
+      "t": 12.46,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1320.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1345.0
+    },
+    {
+      "t": 15.93,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1306.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1331.0
+    },
+    {
+      "t": 19.27,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1344.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1369.0
+    },
+    {
+      "t": 22.82,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1361.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1386.0
+    },
+    {
+      "t": 26.69,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1376.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1401.0
+    },
+    {
+      "t": 29.98,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1376.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1401.0
+    },
+    {
+      "t": 33.06,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1414.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1439.0
+    },
+    {
+      "t": 36.43,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1414.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1439.0
+    },
+    {
+      "t": 39.66,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1414.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1439.0
+    },
+    {
+      "t": 42.48,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1441.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1466.0
+    },
+    {
+      "t": 45.42,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1447.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1472.0
+    },
+    {
+      "t": 48.2,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1448.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1473.0
+    },
+    {
+      "t": 50.91,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1448.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1473.0
+    },
+    {
+      "t": 53.75,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1476.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1501.0
+    },
+    {
+      "t": 56.75,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1483.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1508.0
+    },
+    {
+      "t": 59.69,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1483.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1508.0
+    },
+    {
+      "t": 62.62,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1496.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1521.0
+    },
+    {
+      "t": 65.79,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1511.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1536.0
+    },
+    {
+      "t": 69.13,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1511.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1536.0
+    },
+    {
+      "t": 72.09,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1511.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1536.0
+    },
+    {
+      "t": 75.21,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1542.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1567.0
+    },
+    {
+      "t": 78.1,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1555.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1580.0
+    },
+    {
+      "t": 81.0,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1579.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1604.0
+    },
+    {
+      "t": 83.81,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1596.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1621.0
+    },
+    {
+      "t": 86.62,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1616.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1641.0
+    },
+    {
+      "t": 90.04,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1628.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1653.0
+    },
+    {
+      "t": 92.9,
+      "per_process_mb": {
+        "llama-server 3646b4c147cd": 1550.0,
+        "ollama serve": 25.0
+      },
+      "total_mb": 1575.0
+    }
+  ]
+}

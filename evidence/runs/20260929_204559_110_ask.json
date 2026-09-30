@@ -1,0 +1,109 @@
+{
+  "mode": "ask",
+  "execution": "local",
+  "model": "gemma4:e2b-it-qat",
+  "time": "2026-09-29T20:45:59",
+  "question": "How many attention heads did my A3 model have, and why is multi-head attention easy to parallelize?",
+  "retrieval": "hybrid",
+  "k": 5,
+  "retrieved": [
+    {
+      "label": "P1",
+      "id": "src_f00a37228f:005",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "History > Parallelizing attention",
+      "lines": [
+        36,
+        37
+      ],
+      "rank": 1,
+      "bm25_rank": 1,
+      "text": "Seq2seq models with attention (including self-attention) still suffered from the same issue with recurrent networks, which is that they are hard to parallelize, which prevented them from being accelerated on GPUs. In 2016, decomposable attention applied a self-attention mechanism to feedforward networks, which are easy to parallelize, and achieved SOTA result in textual entailment with an order of magnitude fewer parameters than LSTMs. One of its authors, Jakob Uszkoreit, suspected that attention without recurrence would be sufficient for language translation, thus the title \"attention is All you need\". That hypothesis was against conventional wisdom at the time, and even his father Hans Uszkoreit, a well-known computational linguist, was skeptical. In the same year, self-attention (called intra-attention or intra-sentence attention) was proposed for LSTMs.\n\nOn 2017-06-12, the original (100M-parameter) encoder–decoder transformer model was published in the \"Attention is All you need\" paper. At the time, the focus of the research was on improving seq2seq for machine translation, by removing its recurrence to process all tokens in parallel, but preserving its dot-product attention mechanism to keep its text processing performance. This led to the introduction of a multi-head attention model that was easier to parallelize due to the use of independent heads and the lack of recurrence. Its parallelizability was an important factor to its widespread use in large neural networks.",
+      "dense_rank": 1
+    },
+    {
+      "label": "P2",
+      "id": "src_f00a37228f:024",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "Architecture > Scaled dot-product attention > Multihead attention",
+      "lines": [
+        1777,
+        1777
+      ],
+      "rank": 2,
+      "bm25_rank": 2,
+      "text": "One set of  $\\left(W^{Q},W^{K},W^{V}\\right)$ $W^{Q}$ $W^{K}$ $W^{V}$, in combination with the part of the output projection matrix  $W^{O}$, determines how the attended tokens influence what information is passed to subsequent layers and ultimately the output logits. In addition, the scope of attention, or the range of token relationships captured by each attention head, can expand as tokens pass through successive layers. This allows the model to capture more complex and long-range dependencies in deeper layers. Many transformer attention heads encode relevance relations that are meaningful to humans. For example, some attention heads can attend mostly to the next word, while others mainly attend from verbs to their direct objects. The computations for each attention head can be performed in parallel, which allows for fast processing. The outputs for the attention layer are concatenated to pass into the feedforward neural network layers. Concretely, let the multiple attention heads be indexed by  $i$, then we have ${\\text{MultiheadAttention}}(Q,K,V)={\\text{Concat}}_{i\\in [n_{\\text{heads}}]}({\\text{Attention}}(XW_{i}^{Q},XW_{i}^{K},XW_{i}^{V}))W^{O}$ $X$ $W_{i}^{Q},W_{i}^{K},W_{i}^{V}$ $i$, and  $W^{O}$ It is theoretically possible for each attention head to have a different head dimension  $d_{\\text{head}}$, but that is rarely the case in practice. As an example, in the smallest GPT-2 model, there are only self-attention mechanisms. It has the following dimensions: $d_{\\text{emb}}=768,n_{\\text{head}}=12,d_{\\text{head}}=64$ Since  $12\\times 64=768$, its output projection matrix  $W^{O}\\in \\mathbb {R} ^{(12\\times 64)\\times 768}$",
+      "dense_rank": 2
+    },
+    {
+      "label": "P3",
+      "id": "src_f00a37228f:044",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "Subsequent work > Efficient implementation > Multi-Query Attention",
+      "lines": [
+        4402,
+        4593
+      ],
+      "rank": 3,
+      "bm25_rank": 3,
+      "text": "Multi-Query Attention changes the Multihead Attention mechanism. Whereas normally,\n\n${\\text{MultiheadAttention}}(Q,K,V)={\\text{Concat}}_{i\\in [n_{\\text{heads}}]}\\left({\\text{Attention}}(XW_{i}^{Q},XW_{i}^{K},XW_{i}^{V})\\right)W^{O}$ with Multi-Query Attention, there is just one  $W^{K},W^{V}$, thus:\n\n${\\text{MultiQueryAttention}}(Q,K,V)={\\text{Concat}}_{i\\in [n_{\\text{heads}}]}\\left({\\text{Attention}}(XW_{i}^{Q},XW^{K},XW^{V})\\right)W^{O}$\n\nThis has a neutral effect on model quality and training speed, but increases inference speed.\n\nMore generally, grouped-query attention (GQA) partitions attention heads into groups, each of which shares the key-value pair. MQA is GQA with one group, while standard Multihead Attention is GQA with the maximal number of groups.\n\nMultihead Latent Attention (MLA) is a low-rank approximation to standard MHA. Specifically, each hidden vector, before entering the attention mechanism, is first projected to two low-dimensional spaces (\"latent space\"), one for query and one for key-value (KV vector). This design minimizes the KV cache, as only the low-dimensional KV vector needs to be cached.",
+      "dense_rank": 3
+    },
+    {
+      "label": "P4",
+      "id": "src_f00a37228f:042",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "Subsequent work > Efficient implementation > FlashAttention",
+      "lines": [
+        3993,
+        4395
+      ],
+      "rank": 4,
+      "bm25_rank": 7,
+      "text": "FlashAttention is an algorithm that implements the transformer attention mechanism efficiently on a GPU. It is a communication-avoiding algorithm that performs matrix multiplications in blocks, such that each block fits within the cache of a GPU, and by careful management of the blocks it minimizes data copying between GPU caches (as data movement is slow).\n\nThe FlashAttention method is a communication-avoiding algorithm that fuses these operations into a single loop, increasing the arithmetic intensity. It is an online algorithm that computes the following quantities:\n\n${\\begin{aligned}z_{i}&=q^{T}k_{i}&\\\\m_{i}&=\\max(z_{1},\\dots ,z_{i})&={}&\\max(m_{i-1},z_{i})\\\\\\ell _{i}&=e^{z_{1}-m_{i}}+\\dots +e^{z_{i}-m_{i}}&={}&e^{m_{i-1}-m_{i}}\\ell _{i-1}+e^{z_{i}-m_{i}}\\\\o_{i}&=e^{z_{1}-m_{i}}v_{1}+\\dots +e^{z_{i}-m_{i}}v_{i}&={}&e^{m_{i-1}-m_{i}}o_{i-1}+e^{z_{i}-m_{i}}v_{i}\\end{aligned}}$ and returns  $o_{N}/\\ell _{N}$. In practice, FlashAttention operates over multiple queries and keys per loop iteration, in a similar way as blocked matrix multiplication. If backpropagation is needed, then the output vectors and the intermediate arrays  $[m_{1},\\dots ,m_{N}],[\\ell _{1},\\dots ,\\ell _{N}]$\n\nAn improved version, FlashAttention-2, was developed to cater to the rising demand for language models capable of handling longer context lengths. It offers enhancements in work partitioning and parallelism, enabling it to achieve up to 230 TFLOPs/s on A100 GPUs (FP16/BF16), a 2x speed increase over the original FlashAttention.\n\nKey advancements in FlashAttention-2 include the reduction of non-matmul FLOPs, improved parallelism over the sequence length dimension, better work partitioning between GPU warps, and added support for head dimensions up to 256 and multi-query attention (MQA) and grouped-query attention (GQA).",
+      "dense_rank": 4
+    },
+    {
+      "label": "P5",
+      "id": "src_bc08c49a00:014",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 5. Evidence: token → ID → vector → probability → gradient → update",
+      "lines": [
+        224,
+        235
+      ],
+      "rank": 5,
+      "bm25_rank": 6,
+      "text": "**Corpus.** The starter corpus teaches a small set of sentence templates: people, actions,\nobjects, in fixed patterns. It doesn't have the vocabulary or multi-sentence patterns the\nextension tests need, because the notebook splits training text at every period. 10% is\nheld out so we can see if the model learned patterns or just memorized. The catch:\nheld-out sentences use the same templates, so it's not a test of anything truly new.\n\n**What makes it a neural network.** The model is 111,872 numbers. Each step, it guesses\nnext words, loss scores how wrong it was, backprop works out which way to nudge every\nnumber, and AdamW makes the nudge. Do that 3,000 times and loss drops from 4.93 (random\nguessing) to 0.68.\n\n**Attention.** Predicting the word after \"the customer,\" the model put 48.5% of its\nattention on `<BOS>` (the start-of-text marker), 42.3% on \"the,\" and 9.2% on \"customer\"\n(one of 8 attention heads). That tells you which earlier words it's leaning on. That makes\nsense: in the corpus, \"the customer\" at the start of a sentence is always followed by a\nverb, but mid-sentence it's followed by \"and\", so knowing it's at the start matters. It\ncan't look ahead because future words are masked. If it could, it would just copy the\nanswer during training instead of learning to predict it.",
+      "dense_rank": 5
+    }
+  ],
+  "model_output_raw": "{\"insufficient\": false, \"answer\": \"The A3 model had 8 attention heads, and multi-head attention is easier to parallelize because the computations for each attention head can be performed in parallel [P2].\", \"citations\": [\"P2\"]}",
+  "insufficient_flag": false,
+  "answer": "The A3 model had 8 attention heads, and multi-head attention is easier to parallelize because the computations for each attention head can be performed in parallel [P2].",
+  "citations": [
+    {
+      "label": "P2",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "Architecture > Scaled dot-product attention > Multihead attention",
+      "lines": [
+        1777,
+        1777
+      ]
+    }
+  ],
+  "status": "answered",
+  "citation_problems": [],
+  "timing_s": {
+    "retrieve": 0.19,
+    "generate": 3.2,
+    "total": 3.38
+  },
+  "tokens": {
+    "prompt": 2429,
+    "output": 55
+  },
+  "instructions_file": "prompts/wiki-instructions.md",
+  "chat_history_used": false,
+  "persona_used": false
+}

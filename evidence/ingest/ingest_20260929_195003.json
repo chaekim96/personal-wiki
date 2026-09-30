@@ -1,0 +1,37 @@
+{
+  "command": "ingest",
+  "mode": "local",
+  "model": "gemma4:e2b-it-qat",
+  "num_ctx": 8192,
+  "started": "2026-09-29T19:50:03",
+  "sources": [
+    {
+      "file": "vault/raw/Custom LLM Assignment README.md",
+      "source_id": "src_bc08c49a00",
+      "calls": [],
+      "status": "skipped-unchanged"
+    },
+    {
+      "file": "vault/raw/Wikipedia - Retrieval-augmented generation.md",
+      "source_id": "src_a442819898",
+      "calls": [],
+      "status": "skipped-unchanged"
+    },
+    {
+      "file": "vault/raw/Wikipedia - Transformer architecture.md",
+      "source_id": "src_f00a37228f",
+      "calls": [],
+      "status": "skipped-unchanged"
+    }
+  ],
+  "seconds_total": 0.01,
+  "notes": [
+    "Custom LLM Experiment",
+    "Custom LLM Training Results",
+    "Retrieval-Augmented Generation",
+    "Transformer Architecture",
+    "Transformer Efficient Implementations",
+    "Transformer Training Methods"
+  ],
+  "passages_indexed": 95
+}

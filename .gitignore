@@ -1,0 +1,27 @@
+# Python / environment
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Model weights and caches (never commit; download with `ollama pull`, see README)
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.pth
+models/
+.ollama/
+
+# Credentials
+.env
+.env.*
+*.key
+*.pem
+secrets*
+
+# OS / editor / Obsidian per-user state
+.DS_Store
+vault/.obsidian/workspace*.json
+vault/.obsidian/cache
+vault/.trash/

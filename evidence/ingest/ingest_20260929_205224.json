@@ -1,0 +1,170 @@
+{
+  "command": "ingest",
+  "mode": "local",
+  "model": "gemma4:e2b-it-qat",
+  "num_ctx": 8192,
+  "started": "2026-09-29T20:50:54",
+  "sources": [
+    {
+      "file": "vault/raw/Custom LLM Assignment README.md",
+      "source_id": "src_bc08c49a00",
+      "calls": [
+        {
+          "call": "write",
+          "title": "Custom LLM Experiment",
+          "words_sent": 1197,
+          "truncated": false,
+          "text": "{\"summary\": \"This custom LLM experiment involved training a tiny word-level language model, Karpathy's nanoGPT, from scratch on a CPU. Two experiments were conducted, one using a starter corpus and another using the starter corpus augmented with custom teaching files. The model was tested using a fixed 48-case language evaluation suite.\", \"details\": [{\"text\": \"The model is a tiny word-level language model: Karpathy's nanoGPT (2 blocks, 4 heads, 64-number embeddings, 48-token context), trained from scratch on CPU.\", \"section\": \"S1\"}, {\"text\": \"Two experiments were run with identical settings: the supplied starter corpus, then the starter corpus plus my own teaching files for grammar, opposites, and spatial relations.\", \"section\": \"S1\"}, {\"text\": \"The model continues short sentences; it is not a chatbot.\", \"section\": \"S1\"}, {\"text\": \"Experiment 1 used the starter corpus, and Experiment 2 used the starter corpus plus three plain-text files.\", \"section\": \"S3\"}, {\"text\": \"Training steps were set to 3,000, which was deemed enough practice for the model to learn the sentence patterns.\", \"section\": \"S3\"}, {\"text\": \"The learning rate was set to 0.001, which was large enough to make progress within 3,000 steps and small enough to avoid overshooting.\", \"section\": \"S3\"}, {\"text\": \"The fixed settings across both experiments included seed 42, model size, batch size, steps, learning rate, the 48-case eval suite, and the eval generation settings (seed 2026, temperature 0.8, 24 tokens).\", \"section\": \"S4\"}]}",
+          "seconds": 15.71,
+          "prompt_tokens": 2825,
+          "output_tokens": 382
+        },
+        {
+          "call": "write",
+          "title": "Custom LLM Training Results",
+          "words_sent": 1163,
+          "truncated": false,
+          "text": "{\"summary\": \"This section compares the results of a Custom LLM experiment across different temperature settings. The comparison was conducted using the same trained weights, starting token, and sampling seed, with only the temperature varying.\", \"details\": [{\"text\": \"The comparison involved Experiment 1 and Experiment 2 with different temperature settings.\", \"section\": \"S2\"}, {\"text\": \"In Experiment 1, the temperature barely mattered because the model puts ~98% of its probability on a few near-tied words, so reshaping the distribution rarely changes which word the same random draw lands on.\", \"section\": \"S2\"}, {\"text\": \"In Experiment 2, a temperature of 1.2 produced a garbled line because a 481-word vocabulary has more low-probability tail to sample from.\", \"section\": \"S2\"}, {\"text\": \"Temperature changes the odds before the pick, with low temperatures making the top word win more and high temperatures spreading it out.\", \"section\": \"S2\"}]}",
+          "seconds": 5.91,
+          "prompt_tokens": 2131,
+          "output_tokens": 210
+        },
+        {
+          "call": "write",
+          "title": "Custom LLM Evaluation",
+          "words_sent": 1399,
+          "truncated": false,
+          "text": "{\"summary\": \"This document details a custom LLM evaluation experiment conducted for MBA 290T, focusing on fixed language evaluations across different corpus stages. The evaluation involves scoring based on the highest probability among four choices, with specific rules for unknown prompts and continuations.\", \"details\": [{\"text\": \"The evaluation uses a suite of language evals and a runner script.\", \"section\": \"S1\"}, {\"text\": \"A case scores 1 if the correct word has the highest probability among its four choices, and 0 otherwise, with ties resulting in 0.\", \"section\": \"S1\"}, {\"text\": \"Any unknown prompt or answer word marks the case as `out_of_vocabulary`, which counts as 0 in the all-case rate.\", \"section\": \"S1\"}, {\"text\": \"A separate free continuation is generated for every case with a temperature of 0.8 and 24 tokens, but it is not scored.\", \"section\": \"S1\"}, {\"text\": \"The coverage rose from 24/48 to 26/48 only through vocabulary, as training cannot change coverage.\", \"section\": \"S1\"}, {\"text\": \"The model learned templates, not language, and new wording in Experiment 1 was mostly guessing.\", \"section\": \"S2\"}, {\"text\": \"The next experiment should involve writing a small test set for extension categories and never looking at it while building the corpus.\", \"section\": \"S2\"}]}",
+          "seconds": 8.23,
+          "prompt_tokens": 3045,
+          "output_tokens": 308
+        }
+      ],
+      "status": "ingested"
+    },
+    {
+      "file": "vault/raw/Wikipedia - Retrieval-augmented generation.md",
+      "source_id": "src_a442819898",
+      "calls": [
+        {
+          "call": "write",
+          "title": "Retrieval-Augmented Generation",
+          "words_sent": 1393,
+          "truncated": true,
+          "text": "{\"summary\": \"Retrieval-augmented generation (RAG) is a technique that allows large language models (LLMs) to retrieve and incorporate new information from external data sources before responding to user queries. This method improves LLM performance by blending the LLM process with external look-up processes, which helps reduce AI hallucinations and the need for frequent model retraining.\", \"details\": [{\"text\": \"Retrieval-augmented generation (RAG) is a technique that enables large language models (LLMs) to retrieve and incorporate new information from external data sources.\", \"section\": \"S1\"}, {\"text\": \"RAG improves LLMs by incorporating information retrieval before generating responses.\", \"section\": \"S1\"}, {\"text\": \"RAG pulls relevant text from databases, uploaded documents, or web sources.\", \"section\": \"S1\"}, {\"text\": \"The term retrieval-augmented generation (RAG) was introduced in a 2020 paper that described combining a parametric language model with a non-parametric external memory accessed through retrieval at inference time.\", \"section\": \"S1\"}, {\"text\": \"RAG also reduces the need to retrain LLMs with new data, saving on computational and financial costs.\", \"section\": \"S1\"}, {\"text\": \"Beyond efficiency gains, RAG also allows LLMs to include sources in their responses, so users can verify the cited sources.\", \"section\": \"S1\"}, {\"text\": \"Typically, the data to be referenced is converted into LLM embeddings, numerical representations in the form of a large vector space.\", \"section\": \"S4\"}, {\"text\": \"Given a user query, a document retriever is first called to select the most relevant documents that will be used to augment the query.\", \"section\": \"S4\"}, {\"text\": \"The model feeds this relevant retrieved information into the LLM via prompt engineering of the user's original query.\", \"section\": \"S4\"}, {\"text\": \"Finally, the LLM can generate output based on both the query and the retrieved documents.\", \"section\": \"S4\"}, {\"text\": \"RAG is used in applications where generated responses need to be grounded in external or frequently updated information.\", \"section\": \"S5\"}]}",
+          "seconds": 9.74,
+          "prompt_tokens": 2109,
+          "output_tokens": 458
+        }
+      ],
+      "status": "ingested"
+    },
+    {
+      "file": "vault/raw/Wikipedia - Transformer architecture.md",
+      "source_id": "src_f00a37228f",
+      "calls": [
+        {
+          "call": "write",
+          "title": "Transformer Architecture",
+          "words_sent": 1323,
+          "truncated": true,
+          "text": "{\"summary\": \"The Transformer Architecture has primary components including tokenizers, embedding layers, transformer layers, and un-embedding layers. It operates by converting text into numerical representations, processing these representations through layers, and then converting the final vectors back into a probability distribution over tokens.\", \"details\": [{\"text\": \"All transformers have the same primary components: Tokenizers, which convert text into tokens; Embedding layer, which converts tokens and positions of the tokens into vector representations; Transformer layers, which carry out repeated transformations on the vector representations, extracting more and more linguistic information; Un-embedding layer, which converts the final vector representations back to a probability distribution over the tokens.\", \"section\": \"S1\"}, {\"text\": \"The input text is treated by a preprocessor, which performs both textual transformations and splits the text into coarse-grained segments called pretokens. The latter is referred to as pretokenization.\", \"section\": \"S2\"}, {\"text\": \"Each pretoken is segmented further into tokens by a tokenizer that expects to only see pretokens output by its preprocessor.\", \"section\": \"S2\"}, {\"text\": \"Each token it produces is a string of one or more characters belonging to a finite set of strings called the vocabulary $V$.\", \"section\": \"S2\"}, {\"text\": \"Each integer token identifier is converted into an embedding vector via a lookup table, or it multiplies a one-hot representation of the token identifier by an embedding matrix $M$.\", \"section\": \"S3\"}, {\"text\": \"The dimension of an embedding vector is called hidden size or embedding size and is written as $d_{\\text{emb}}$, which is written as $d_{\\text{model}}$.\", \"section\": \"S3\"}, {\"text\": \"An un-embedding layer is a linear-softmax layer: $\\text{UnEmbed} (x)=\\text{softmax} (xW+b)$, where the matrix has shape $(d_{\\text{emb}},|V|)$.\", \"section\": \"S4\"}, {\"text\": \"A positional encoding is a fixed-size vector representation of the relative positions of tokens within a sequence, providing the transformer model with information about where the words are in the input sequence.\", \"section\": \"S5\"}, {\"text\": \"The feedforward network (FFN) modules in a transformer are 2-layered multilayer perceptrons: $\\text{FFN} (x)=\\\\phi (xW^{(1)}+b^{(1)})W^{(2)}+b^{(2)}.$\", \"section\": \"S7\"}, {\"text\": \"The number of neurons in the middle layer of the feedforward network is called intermediate size (GPT), filter size (BERT), or feedforward size (BERT), and it is typically larger than the embedding size, for example, in both GPT-2 series and BERT series, the intermediate size of a model is 4 times its embedding size: $d_{\\text{ffn}}=4d_{\\text{emb}}$.\", \"section\": \"S7\"}]}",
+          "seconds": 12.15,
+          "prompt_tokens": 2297,
+          "output_tokens": 622
+        },
+        {
+          "call": "write",
+          "title": "Transformer Training Methods",
+          "words_sent": 682,
+          "truncated": false,
+          "text": "{\"summary\": \"Transformer training methods cover techniques for stabilizing training, regularization, pretraining and fine-tuning, knowledge distillation, and various language modeling tasks. These methods address issues like convergence, overfitting, and model size.\", \"details\": [{\"text\": \"The plain transformer architecture had difficulty in converging, leading the original paper authors to recommend using learning rate warmup, where the learning rate linearly scales up from 0 to a maximal value for the first part of training before decaying again.\", \"section\": \"S1\"}, {\"text\": \"Using layer normalization before multihead attention and feedforward layers instead of after has been found to stabilize training, resulting in the \\\"pre-LN Transformer,\\\" which is more commonly used than the original \\\"post-LN Transformer.\\\"\", \"section\": \"S1\"}, {\"text\": \"The original transformer used dropout during training to reduce overfitting, applying it to the output of each sublayer before its residual connection and normalization, as well as to the sums of token embeddings and positional encodings.\", \"section\": \"S2\"}, {\"text\": \"The original paper also employed label smoothing, which substitutes a certain target distribution with one that assigns a small probability to alternative tokens, aiming to improve generalization by counteracting overconfidence in training targets.\", \"section\": \"S2\"}, {\"text\": \"Transformers are typically first pretrained by self-supervised learning on a large generic dataset, followed by supervised fine-tuning on a small task-specific dataset.\", \"section\": \"S3\"}, {\"text\": \"Tasks for pretraining and fine-tuning commonly include language modeling, next-sentence prediction, question answering, reading comprehension, sentiment analysis, and paraphrasing.\", \"section\": \"S3\"}, {\"text\": \"Knowledge distillation is a method for training a smaller model, called a \\\"student,\\\" to reproduce the output behavior of a larger \\\"teacher\\\" model.\", \"section\": \"S4\"}, {\"text\": \"In a masked task, one or more tokens are masked out, and the model produces a probability distribution predicting what the masked-out tokens are based on the context, with the loss function being the sum of log-perplexities for the masked-out tokens.\", \"section\": \"S5\"}, {\"text\": \"In an autoregressive task, the entire sequence is masked at first, and the model predicts the first token, which is then revealed to predict the second token, and so on.\", \"section\": \"S5\"}, {\"text\": \"In a prefixLM task, the sequence is divided into two parts, where the first part is presented as context, and the model predicts the first token of the second part, followed by predicting subsequent tokens.\", \"section\": \"S5\"}]}",
+          "seconds": 9.9,
+          "prompt_tokens": 1179,
+          "output_tokens": 548
+        },
+        {
+          "call": "write",
+          "title": "Transformer Efficient Implementations",
+          "words_sent": 1218,
+          "truncated": false,
+          "text": "{\"summary\": \"Efficient implementations of the Transformer model focus on various techniques to improve its performance and efficiency across different aspects, such as memory management, computational optimization, and architectural changes. These methods aim to address the computational costs associated with standard transformer usage.\", \"details\": [{\"text\": \"The transformer model has been implemented in standard deep learning frameworks such as TensorFlow and PyTorch.\", \"section\": \"S1\"}, {\"text\": \"The KV caching method saves the computed key and value vectors at each attention block, so that they are not recomputed at each new token.\", \"section\": \"S2\"}, {\"text\": \"PagedAttention applies memory paging to KV caching.\", \"section\": \"S2\"}, {\"text\": \"Continuous batching adds new requests to batch and removes completed requests between decoding iterations instead of waiting for every request in a batch to finish.\", \"section\": \"S3\"}, {\"text\": \"Quantization can reduce memory use and data transfer costs and can improve inference speed on hardware that supports low precision arithmetic.\", \"section\": \"S4\"}, {\"text\": \"FlashAttention is an algorithm that implements the transformer attention mechanism efficiently on a GPU.\", \"section\": \"S5\"}, {\"text\": \"FlashAttention-2 offers enhancements in work partitioning and parallelism, enabling it to achieve up to 230 TFLOPs/s on A100 GPUs (FP16/BF16), a 2x speed increase over the original FlashAttention.\", \"section\": \"S5\"}, {\"text\": \"Multi-Query Attention changes the Multihead Attention mechanism by having just one $W^{K},W^{V}$ instead of multiple, which increases inference speed.\", \"section\": \"S6\"}, {\"text\": \"Multihead Latent Attention (MLA) is a low-rank approximation to standard MHA that minimizes the KV cache by only caching a low-dimensional KV vector.\", \"section\": \"S6\"}, {\"text\": \"Speculative decoding is a method to accelerate token decoding by quickly computing future tokens and then verifying them.\", \"section\": \"S7\"}, {\"text\": \"Swin transformer is an efficient architecture that performs attention inside shifting windows in the image domain.\", \"section\": \"S8\"}, {\"text\": \"Reformer (2020) reduces the computational load from $O(N^{2})$ to $O(N\\text{ln }N)$ compared to the standard all-to-all or causal attention graph.\", \"section\": \"S9\"}, {\"text\": \"BigBird (2020) uses random small-world networks which grows as $O(N)$ and is an example of sparse attention that grows slower than $O(N^{2})$.\", \"section\": \"S9\"}]}",
+          "seconds": 11.92,
+          "prompt_tokens": 2394,
+          "output_tokens": 564
+        }
+      ],
+      "status": "ingested"
+    }
+  ],
+  "link_calls": [
+    {
+      "call": "link",
+      "title": "Custom LLM Evaluation",
+      "text": "{\"related\": [\n  {\"title\": \"Transformer Architecture\", \"reason\": \"The evaluation of a custom LLM is fundamentally based on the underlying Transformer Architecture.\"},\n  {\"title\": \"Custom LLM Experiment\", \"reason\": \"The Custom LLM Experiment describes the specific training process that informs the evaluation metrics.\"},\n  {\"title\": \"Custom LLM Training Results\", \"reason\": \"The Custom LLM Training Results section provides the data used to score the custom LLM evaluation.\"}\n]}",
+      "seconds": 2.17,
+      "prompt_tokens": 403,
+      "output_tokens": 103
+    },
+    {
+      "call": "link",
+      "title": "Custom LLM Experiment",
+      "text": "{\"related\": [{\"title\": \"Transformer Architecture\", \"reason\": \"The custom LLM experiment involves training a word-level language model, which is built upon the Transformer Architecture.\"}, {\"title\": \"Transformer Training Methods\", \"reason\": \"The custom LLM experiment utilized training methods, specifically pretraining with a starter corpus and custom teaching files.\"}, {\"title\": \"Custom LLM Evaluation\", \"reason\": \"The custom LLM experiment included testing the model using a fixed 48-case language evaluation suite, which aligns with the focus of custom LLM evaluation.\"}]}",
+      "seconds": 2.27,
+      "prompt_tokens": 418,
+      "output_tokens": 116
+    },
+    {
+      "call": "link",
+      "title": "Custom LLM Training Results",
+      "text": "{\"related\": [\n  {\"title\": \"Custom LLM Experiment\", \"reason\": \"The Custom LLM Training Results section compares results from a Custom LLM experiment, which involved training a tiny word-level language model from scratch on a CPU.\"},\n  {\"title\": \"Transformer Architecture\", \"reason\": \"The Custom LLM Training Results section implicitly relies on the Transformer Architecture as the underlying structure for the trained weights.\"},\n  {\"title\": \"Transformer Training Methods\", \"reason\": \"The comparison across different temperature settings in the Custom LLM Training Results relates to Transformer training methods, specifically techniques for stabilizing training.\"}\n]}",
+      "seconds": 2.46,
+      "prompt_tokens": 403,
+      "output_tokens": 129
+    },
+    {
+      "call": "link",
+      "title": "Retrieval-Augmented Generation",
+      "text": "{\"related\": [{\"title\": \"Transformer Architecture\", \"reason\": \"The Transformer Architecture provides the foundational structure that is often leveraged by retrieval systems to process information.\"}, {\"title\": \"Transformer Training Methods\", \"reason\": \"Transformer training methods include fine-tuning techniques that can be applied to the retrieved information to enhance the LLM's response.\"}, {\"title\": \"Transformer Efficient Implementations\", \"reason\": \"Efficient implementations of the Transformer model are relevant because optimizing the retrieval process can be part of improving the overall system efficiency.\"}]}",
+      "seconds": 2.12,
+      "prompt_tokens": 413,
+      "output_tokens": 107
+    },
+    {
+      "call": "link",
+      "title": "Transformer Architecture",
+      "text": "{\"related\": [\n  {\"title\": \"Transformer Training Methods\", \"reason\": \"Transformer training methods cover techniques for stabilizing training, regularization, pretraining and fine-tuning, knowledge distillation, and various language modeling tasks, which are relevant to the overall operation of the Transformer Architecture.\"},\n  {\"title\": \"Transformer Efficient Implementations\", \"reason\": \"Efficient implementations of the Transformer model focus on various techniques to improve its performance and efficiency across different aspects, such as memory management, computational optimization, and architectural changes, which directly impact the transformer layers.\"},\n  {\"title\": \"Custom LLM Experiment\", \"reason\": \"The Custom LLM Experiment involved training a tiny word-level language model, Karpathy's nanoGPT, from scratch on a CPU, which relates to the foundational concepts of building and training a model based on the Transformer Architecture.\"}\n]}",
+      "seconds": 3.22,
+      "prompt_tokens": 409,
+      "output_tokens": 176
+    },
+    {
+      "call": "link",
+      "title": "Transformer Efficient Implementations",
+      "text": "{\"related\": [\n  {\"title\": \"Transformer Architecture\", \"reason\": \"The Transformer Architecture defines the primary components like tokenizers and layers that are subject to efficient implementation techniques.\"},\n  {\"title\": \"Transformer Training Methods\", \"reason\": \"Efficient implementations of the Transformer model often involve techniques from Transformer Training Methods such as regularization and pretraining to improve performance.\"},\n  {\"title\": \"Custom LLM Experiment\", \"reason\": \"Efficient implementations of the Transformer model can be tested using experiments like the Custom LLM Experiment to observe performance gains.\"}\n]}",
+      "seconds": 2.22,
+      "prompt_tokens": 394,
+      "output_tokens": 115
+    },
+    {
+      "call": "link",
+      "title": "Transformer Training Methods",
+      "text": "{\"related\": [\n  {\"title\": \"Transformer Architecture\", \"reason\": \"The Transformer training methods are applied to the Transformer Architecture to stabilize training and address issues like convergence.\"},\n  {\"title\": \"Transformer Efficient Implementations\", \"reason\": \"Transformer training methods incorporate techniques from Transformer Efficient Implementations to improve performance and efficiency during training.\"},\n  {\"title\": \"Custom LLM Experiment\", \"reason\": \"Transformer training methods are used in the Custom LLM Experiment to train a tiny word-level language model from scratch.\"}\n]}",
+      "seconds": 2.33,
+      "prompt_tokens": 393,
+      "output_tokens": 111
+    }
+  ],
+  "embeddings_new": 0,
+  "seconds_total": 90.42,
+  "notes": [
+    "Custom LLM Evaluation",
+    "Custom LLM Experiment",
+    "Custom LLM Training Results",
+    "Retrieval-Augmented Generation",
+    "Transformer Architecture",
+    "Transformer Efficient Implementations",
+    "Transformer Training Methods"
+  ],
+  "passages_indexed": 95
+}

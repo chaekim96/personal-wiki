@@ -1,0 +1,27 @@
+{
+  "mode": "search",
+  "execution": "local",
+  "model": "none (retrieval only)",
+  "time": "2026-09-29T20:29:35",
+  "query": "learning rate",
+  "k": 1,
+  "retrieval": "bm25 (fallback: Ollama not running)",
+  "retrieved": [
+    {
+      "id": "src_f00a37228f:008",
+      "source_id": "src_f00a37228f",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "Training > Methods for stabilizing training",
+      "lines": [
+        52,
+        53
+      ],
+      "words": 95,
+      "text": "The plain transformer architecture had difficulty in converging. In the original paper, the authors recommended using learning rate warmup. That is, the learning rate should linearly scale up from 0 to maximal value for the first part of the training (usually recommended to be 2% of the total number of training steps), before decaying again.\n\nA 2020 paper found that using layer normalization before (instead of after) multihead attention and feedforward layers stabilizes training, not requiring learning rate warmup. This is the \"pre-LN Transformer\" and is more commonly used, compared to the original \"post-LN Transformer\".",
+      "rank": 1,
+      "bm25": 7.377,
+      "bm25_rank": 1,
+      "score": 7.377
+    }
+  ]
+}

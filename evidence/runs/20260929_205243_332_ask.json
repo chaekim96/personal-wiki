@@ -1,0 +1,109 @@
+{
+  "mode": "ask",
+  "execution": "local",
+  "model": "gemma4:e2b-it-qat",
+  "time": "2026-09-29T20:52:43",
+  "question": "What learning rate did I use in Assignment 3?",
+  "retrieval": "hybrid",
+  "k": 5,
+  "retrieved": [
+    {
+      "label": "P1",
+      "id": "src_bc08c49a00:003",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 2. My three choices and prediction",
+      "lines": [
+        45,
+        54
+      ],
+      "rank": 1,
+      "bm25_rank": 1,
+      "text": "- **Corpus:** starter first, then starter + the three files above. Nothing else changed.\n- **Training steps: 3,000.** That is enough practice for a model this small to learn the sentence\n  patterns; many more steps would raise the risk of memorizing training sentences.\n  One step = one batch of 32 passages and one weight update, not a full pass\n  (3,000 steps ≈ 23 passes over the 4,132 starter training passages).\n- **Learning rate: 0.001.** That is large enough to make progress within 3,000 steps and small enough\n  to avoid overshooting. The notebook warms the rate up over the first 100 steps and then\n  cosine-decays it to 10% of the peak.\n\n**What I predicted before each run** (full text in cell 2 of each executed notebook):",
+      "dense_rank": 1
+    },
+    {
+      "label": "P2",
+      "id": "src_bc08c49a00:007",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 3. My runs",
+      "lines": [
+        103,
+        103
+      ],
+      "rank": 2,
+      "bm25_rank": 2,
+      "text": "**What stayed fixed, what changed:**\n- **Fixed across both experiments:** seed 42, model size, batch size, steps, learning rate,\n  the 48-case eval suite (hash `1d7c503f…`), and the eval generation settings (seed 2026,\n  temperature 0.8, 24 tokens).\n- **Changed:** only the files in `corpus/`. That also changed the vocabulary, the split, and\n  the 20+20 loss panels.\n- **Changed only at inference:** temperature, and the chat and eval prompts. None of these update weights.",
+      "dense_rank": 2
+    },
+    {
+      "label": "P3",
+      "id": "src_bc08c49a00:006",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 3. My runs",
+      "lines": [
+        83,
+        95
+      ],
+      "rank": 3,
+      "bm25_rank": 8,
+      "text": "| | Experiment 1 | Experiment 2 |\n|---|---|---|\n| Completed steps | 3,000 / 3,000, not interrupted | 3,000 / 3,000, not interrupted |\n| Training time | 14.1 s | 12.4 s |\n| Hardware | Apple M3 Pro (18 GB), macOS 15.7.4, CPU only, PyTorch 2.14.0, Python 3.11 | same |\n| Parameters | 111,872 | 133,952 (larger embedding table) |\n| Vocabulary | 136 (133 words + `<BOS>` `<EOS>` `<UNK>`) | 481 (478 + 3); 0 types dropped by the 509 cap |\n| Unique passages / split | 4,592 → 4,132 train / 460 validation | 4,947 → 4,452 train / 495 validation |\n| Unknown-token rate, train / held-out | 0.00% / 0.00% | 0.00% / 0.42% |\n| Settings | [config.json](evidence/experiment1_starter/run/config.json), [training_summary.json](evidence/experiment1_starter/run/training_summary.json) | [config.json](evidence/experiment2_expanded/run/config.json), [training_summary.json](evidence/experiment2_expanded/run/training_summary.json) |\n| Vocabulary report | [vocabulary_report.json](evidence/experiment1_starter/run/vocabulary_report.json) | [vocabulary_report.json](evidence/experiment2_expanded/run/vocabulary_report.json) |\n\n- The only earlier run was a 10-step setup smoke test, which is not part of this submission.\n- **Why the Exp 2 held-out unknown-token rate is 0.42%:** 23 of my words appear in only one\n  sentence, and that sentence landed in the 10% validation split (e.g. *swam, wrote, built,\n  kicked, planted*). The model never trained on them.\n- **What the split can test:** it is by passage, not by source file, and held-out sentences\n  share templates with training. So validation loss tests recombining familiar templates,\n  not generalization to new kinds of text.",
+      "dense_rank": 3
+    },
+    {
+      "label": "P4",
+      "id": "src_bc08c49a00:013",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 5. Evidence: token → ID → vector → probability → gradient → update",
+      "lines": [
+        202,
+        204
+      ],
+      "rank": 4,
+      "bm25_rank": 5,
+      "text": "**My explanations** (my own words):\n\n1. **Token and ID:** A token is the unit the text gets split into. Here, a whole word or\n   punctuation mark. The model can't read words, so each token gets an ID number, like a\n   row number in a lookup table. \"customer\" is ID 28 out of 136.\n2. **Embedding:** The embedding is the list of 64 numbers stored at that row, which is how\n   the model represents \"customer.\" It starts random, and training adjusts it so words used\n   in similar sentences end up with similar numbers. That's why \"customer\" ended up next to\n   shopper, client, and buyer (0.98 similarity).\n3. **Probability:** After reading \"the customer,\" the model gives every word in its\n   vocabulary a chance of coming next, and they add up to 100%. \"reviewed 0.178\" means it\n   gives \"reviewed\" about an 18% chance, nearly tied with five other verbs, because the\n   corpus uses all six after \"the customer.\"\n4. **Gradient:** The gradient tells the model which direction to nudge a number to make its\n   guesses less wrong. \"+0.000693\" means increasing this number would slightly increase the\n   error, so the model should decrease it.\n5. **Weight update:** The optimizer moved the number in the opposite direction of the\n   gradient, down by 0.00001. The step was that small because of warmup: on step 1, the\n   learning rate starts at 1/100 of the 0.001 peak. AdamW normalizes the gradient, so the\n   first step moved by the full learning rate regardless of the gradient's size; the\n   gradient's sign only chose the direction.",
+      "dense_rank": 6
+    },
+    {
+      "label": "P5",
+      "id": "src_bc08c49a00:005",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 2. My three choices and prediction",
+      "lines": [
+        65,
+        74
+      ],
+      "rank": 5,
+      "bm25_rank": 14,
+      "text": "I was wrong about speed. I expected messy halfway samples, but the single-batch loss was\nalready 0.76 at step 500, the panel loss was 0.68 by step 1,500, and the sentences were\nalready clean at step 1,500. The corpus is narrow, so there wasn't much left to learn.\nFamiliar prompts beat my guess (16/16 vs. 13/16). New wording landed at 4/8, but most of\nthose were coin flips between near-zero probabilities, so I don't count that as learning.\nFor customer, I guessed role nouns like patient and client. I got shopper, buyer, and\nconsumer. In this corpus, shopping people only show up in shopping sentences, so \"same\nslot\" and \"same meaning\" end up being the same thing.\n\nFor Experiment 2, I predicted 1 of 2 new extension cases right, starter scores holding,\nand higher loss. Actual: 2 of 2, but the spatial case was already right before training,\nby chance. Familiar 16/16, new wording 7/8, loss higher (0.762 / 0.949 vs. 0.678 / 0.706).\nI missed new wording because I expected random flips. Instead, the correct choices gained\n10–50× relative to the others, though most still stayed under 1% probability. With one run\nand one seed, I can't tell whether that came from the new data or from chance.",
+      "dense_rank": 5
+    }
+  ],
+  "model_output_raw": "{\"answer\": \"The learning rate used was 0.001 [P1].\", \"citations\": [\"P1\"], \"insufficient\": false}",
+  "insufficient_flag": false,
+  "answer": "The learning rate used was 0.001 [P1].",
+  "citations": [
+    {
+      "label": "P1",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 2. My three choices and prediction",
+      "lines": [
+        45,
+        54
+      ]
+    }
+  ],
+  "status": "answered",
+  "citation_problems": [],
+  "timing_s": {
+    "retrieve": 0.85,
+    "generate": 6.52,
+    "total": 7.37
+  },
+  "tokens": {
+    "prompt": 2300,
+    "output": 34
+  },
+  "instructions_file": "prompts/wiki-instructions.md",
+  "chat_history_used": false,
+  "persona_used": false
+}

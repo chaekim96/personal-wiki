@@ -1,0 +1,38 @@
+{
+  "mode": "search",
+  "execution": "local",
+  "model": "none (retrieval only)",
+  "time": "2026-09-29T19:58:54",
+  "query": "learning rate",
+  "k": 2,
+  "retrieved": [
+    {
+      "id": "src_f00a37228f:008",
+      "source_id": "src_f00a37228f",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "Training > Methods for stabilizing training",
+      "lines": [
+        52,
+        53
+      ],
+      "words": 95,
+      "text": "The plain transformer architecture had difficulty in converging. In the original paper, the authors recommended using learning rate warmup. That is, the learning rate should linearly scale up from 0 to maximal value for the first part of the training (usually recommended to be 2% of the total number of training steps), before decaying again.\n\nA 2020 paper found that using layer normalization before (instead of after) multihead attention and feedforward layers stabilizes training, not requiring learning rate warmup. This is the \"pre-LN Transformer\" and is more commonly used, compared to the original \"post-LN Transformer\".",
+      "score": 7.377,
+      "rank": 1
+    },
+    {
+      "id": "src_bc08c49a00:003",
+      "source_id": "src_bc08c49a00",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 2. My three choices and prediction",
+      "lines": [
+        45,
+        54
+      ],
+      "words": 125,
+      "text": "- **Corpus:** starter first, then starter + the three files above. Nothing else changed.\n- **Training steps: 3,000.** That is enough practice for a model this small to learn the sentence\n  patterns; many more steps would raise the risk of memorizing training sentences.\n  One step = one batch of 32 passages and one weight update, not a full pass\n  (3,000 steps ≈ 23 passes over the 4,132 starter training passages).\n- **Learning rate: 0.001.** That is large enough to make progress within 3,000 steps and small enough\n  to avoid overshooting. The notebook warms the rate up over the first 100 steps and then\n  cosine-decays it to 10% of the peak.\n\n**What I predicted before each run** (full text in cell 2 of each executed notebook):",
+      "score": 5.252,
+      "rank": 2
+    }
+  ]
+}

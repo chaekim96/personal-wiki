@@ -1,0 +1,64 @@
+{
+  "command": "ingest",
+  "mode": "local",
+  "model": "gemma4:e2b-it-qat",
+  "num_ctx": 8192,
+  "started": "2026-09-29T19:49:30",
+  "sources": [
+    {
+      "file": "vault/raw/Custom LLM Assignment README.md",
+      "source_id": "src_bc08c49a00",
+      "calls": [
+        {
+          "call": "write",
+          "title": "Custom LLM Experiment",
+          "words_sent": 1444,
+          "truncated": true,
+          "text": "{\"summary\": \"This experiment involved training a tiny word-level language model, Karpathy's nanoGPT, from scratch on CPU. Two experiments were conducted, one using a starter corpus and one expanded with custom teaching files, and the results were compared.\", \"details\": [{\"text\": \"The model is a tiny word-level language model: Karpathy's nanoGPT (2 blocks, 4 heads, 64-number embeddings, 48-token context), trained from scratch on CPU.\", \"section\": \"S1\"}, {\"text\": \"Two experiments were run with identical settings: the supplied starter corpus, then the starter corpus plus my own teaching files for grammar, opposites, and spatial relations.\", \"section\": \"S1\"}, {\"text\": \"The model continues short sentences; it is not a chatbot.\", \"section\": \"S1\"}, {\"text\": \"Experiment 1 used the starter corpus, while Experiment 2 used the starter corpus plus three plain-text files: [grammar_tense_and_agreement.txt], [opposites_in_context.txt], and [spatial_relations.txt].\", \"section\": \"S2\"}, {\"text\": \"The training steps were set to 3,000, which was deemed enough practice for the model to learn the sentence patterns.\", \"section\": \"S3\"}, {\"text\": \"The learning rate was set to 0.001, which was large enough to make progress within 3,000 steps and small enough to avoid overshooting.\", \"section\": \"S3\"}, {\"text\": \"The vocabulary for Experiment 1 was 136 (133 words + `<BOS>` `<EOS>` `<UNK>`), and for Experiment 2 it was 481 (478 + 3).\", \"section\": \"S4\"}]}",
+          "seconds": 8.97,
+          "prompt_tokens": 3207,
+          "output_tokens": 386
+        },
+        {
+          "call": "write",
+          "title": "Custom LLM Training Results",
+          "words_sent": 1318,
+          "truncated": true,
+          "text": "{\"summary\": \"The custom LLM experiment involved training with two different setups, Experiment 1 and Experiment 2, using samples and loss as evidence. The training process showed that the model learned to generate full sentences by step 1,500, and the loss curves indicated no significant quality difference between the two experiments after that point.\", \"details\": [{\"text\": \"Step-0 samples, complete (untrained, same seed): Experiment 1 and Experiment 2 contain word soup.\", \"section\": \"S1\"}, {\"text\": \"Visible change: from random words to complete template sentences by step 1,500, with little change after that.\", \"section\": \"S1\"}, {\"text\": \"In Experiment 1, all 8 halfway and final sentences exist word for word in the corpus, and 2 of them are validation passages the model never trained on.\", \"section\": \"S1\"}, {\"text\": \"In Experiment 2, no sample uses my new material; the new files are only ~7% of the training passages.\", \"section\": \"S1\"}, {\"text\": \"Step 0 loss is about ln(vocabulary size): ln 136 ≈ 4.91, ln 481 ≈ 6.18. That is a uniform guess.\", \"section\": \"S1\"}, {\"text\": \"Losses from different corpora and vocabularies are not directly comparable.\", \"section\": \"S1\"}, {\"text\": \"Text → tokens → IDs: `today the school focused on lesson and the local professor .` → `['today', 'the', 'school', 'focused', 'on', 'lesson', 'and', 'the', 'local', 'professor', '.']` → `[1, 121, 118, 101, 42, 74, 61, 7, 118, 63, 88, 3, 2]` (with `<BOS>` = 1 and `<EOS>` = 2).\", \"section\": \"S2\"}, {\"text\": \"One word: `customer` → ID 28 → a row of 64 numbers in the embedding table.\", \"section\": \"S2\"}, {\"text\": \"After training, first 5 of 64: `[0.0366, -0.0182, 0.1330, 0.1060, 0.0630]`. Before training, first 5 of 64: `[-0.0576, -0.0048, 0.0426, 0.0193, 0.0156]`. Full vectors are in `inspection.json`. Length grew 0.175 → 0.673; cosine similarity before vs. after = 0.197.\", \"section\": \"S2\"}, {\"text\": \"Untrained: customer 0.016, bus 0.011, educator 0.010, us 0.010, application 0.010 (almost flat, ~1/136). Trained: reviewed 0.178, recommended 0.171, ordered 0.168, selected 0.163, compared 0.160, returned 0.143.\", \"section\": \"S2\"}, {\"text\": \"First parameter update (`customer`, coordinate 0, step 1): before −0.0575919, gradient +0.000693, learning rate 0.00001 (warmup), after −0.0576019.\", \"section\": \"S2\"}]}",
+          "seconds": 15.29,
+          "prompt_tokens": 2821,
+          "output_tokens": 819
+        }
+      ],
+      "status": "ingested"
+    }
+  ],
+  "link_calls": [
+    {
+      "call": "link",
+      "title": "Custom LLM Experiment",
+      "text": "{\"related\": [\n  {\"title\": \"Transformer Architecture\", \"reason\": \"The custom LLM experiment utilized a word-level language model, which is built upon the Transformer Architecture.\"},\n  {\"title\": \"Transformer Training Methods\", \"reason\": \"The custom LLM experiment involved training the model, which falls under the scope of Transformer training methods.\"},\n  {\"title\": \"Custom LLM Training Results\", \"reason\": \"The custom LLM experiment directly relates to the Custom LLM Training Results note as it details the specific training setups and results.\"}\n]}",
+      "seconds": 2.23,
+      "prompt_tokens": 366,
+      "output_tokens": 117
+    },
+    {
+      "call": "link",
+      "title": "Custom LLM Training Results",
+      "text": "{\"related\": [{\"title\": \"Transformer Architecture\", \"reason\": \"The Transformer Architecture is a foundational component of the model used in the Custom LLM Experiment.\"}, {\"title\": \"Transformer Training Methods\", \"reason\": \"The training process described in the Custom LLM Experiment utilizes techniques covered in Transformer Training Methods.\"}, {\"title\": \"Custom LLM Experiment\", \"reason\": \"The Custom LLM Experiment is the primary subject of the current note, and it relates to the general topic of Transformer Training Methods.\"}]}",
+      "seconds": 1.98,
+      "prompt_tokens": 380,
+      "output_tokens": 103
+    }
+  ],
+  "seconds_total": 28.49,
+  "notes": [
+    "Custom LLM Experiment",
+    "Custom LLM Training Results",
+    "Retrieval-Augmented Generation",
+    "Transformer Architecture",
+    "Transformer Efficient Implementations",
+    "Transformer Training Methods"
+  ],
+  "passages_indexed": 95
+}

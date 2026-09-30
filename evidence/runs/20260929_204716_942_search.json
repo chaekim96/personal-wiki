@@ -1,0 +1,65 @@
+{
+  "mode": "search",
+  "execution": "local",
+  "model": "none (retrieval only)",
+  "time": "2026-09-29T20:47:16",
+  "query": "positional encoding",
+  "k": 3,
+  "retrieval": "hybrid",
+  "retrieved": [
+    {
+      "id": "src_f00a37228f:018",
+      "source_id": "src_f00a37228f",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "Architecture > Positional encoding",
+      "lines": [
+        428,
+        429
+      ],
+      "words": 115,
+      "text": "A positional encoding is a fixed-size vector representation of the relative positions of tokens within a sequence: it provides the transformer model with information about where the words are in the input sequence. This induces a bias towards the order of the input sequence, so that, for example, the input sequence \"man bites dog\" is processed differently from \"dog bites man\".\n\nThe positional encoding is defined as a function of type  $f:\\mathbb {R} \\to \\mathbb {R} ^{d}$, where  $d$ $(f(t)_{2k},f(t)_{2k+1})=(\\sin(\\theta ),\\cos(\\theta ))\\quad \\forall k\\in \\{0,1,\\ldots ,d/2-1\\}$ where  $\\theta ={\\frac {t}{r^{k}}},r=N^{2/d}$. Here,  $N$ $k$ $N=10000$. The function is in a simpler form when written as a complex function of type  $f:\\mathbb {R} \\to \\mathbb {C} ^{d/2}$",
+      "rank": 1,
+      "bm25": 7.903,
+      "bm25_rank": 3,
+      "score": 0.03227,
+      "cosine": 0.6975,
+      "dense_rank": 1
+    },
+    {
+      "id": "src_f00a37228f:034",
+      "source_id": "src_f00a37228f",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "Subsequent work > Alternative positional encodings",
+      "lines": [
+        3084,
+        3085
+      ],
+      "words": 56,
+      "text": "Transformers may use other positional encoding methods than sinusoidal.\n\nThe original transformer paper reported using a learned positional encoding, but finding it not superior to the sinusoidal one. Later, found that causal masking itself provides enough signal to a transformer decoder that it can learn to implicitly perform absolute positional encoding without the positional encoding module.",
+      "rank": 2,
+      "bm25": 9.55,
+      "bm25_rank": 1,
+      "score": 0.03202,
+      "cosine": 0.5477,
+      "dense_rank": 4
+    },
+    {
+      "id": "src_f00a37228f:037",
+      "source_id": "src_f00a37228f",
+      "source": "vault/raw/Wikipedia - Transformer architecture.md",
+      "section": "Subsequent work > Alternative positional encodings > Relative Position Encodings",
+      "lines": [
+        3848,
+        3848
+      ],
+      "words": 34,
+      "text": "Relative Position Encodings is similar to ALiBi, but more generic: ${\\begin{aligned}{\\text{Attention}}(Q,K,V)={\\text{softmax}}\\left({\\frac {QK^{\\mathrm {T} }}{\\sqrt {d_{k}}}}+B\\right)V\\end{aligned}}$ where  $B$ $B_{i,j}=B_{i',j'}$ $i-j=i'-j'$. This is contrasted with the original sinusoidal positional encoding, which is an \"absolute positional encoding\".",
+      "rank": 3,
+      "bm25": 8.324,
+      "bm25_rank": 2,
+      "score": 0.032,
+      "cosine": 0.5599,
+      "dense_rank": 3
+    }
+  ]
+}

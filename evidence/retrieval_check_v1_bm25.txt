@@ -1,0 +1,37 @@
+
+Test 1 direct: What learning rate did I use in Assignment 3?
+  query words: ['learning', 'rate', 'use', 'assignment', '3']
+  expected 'Learning rate: 0.001': rank 1, score 8.376 -> IN TOP 5
+    top1:   8.38  Custom LLM Assignment README.md  | 2. My three choices and prediction
+    top2:   8.27  Custom LLM Assignment README.md  | 3. My runs
+    top3:   7.38  Wikipedia - Transformer architec | Methods for stabilizing training
+    top4:   7.07  Custom LLM Assignment README.md  | 10. Reproduce and inspect
+    top5:   6.96  Custom LLM Assignment README.md  | 5. Evidence: token → ID → vector → probabilit
+
+Test 2 paraphrased: Why is RAG cheaper than retraining a model when information changes?
+  query words: ['rag', 'cheaper', 'retraining', 'model', 'information', 'changes']
+  expected 'reduces the need to retrain LLMs': rank 5, score 7.183 -> IN TOP 5
+  expected 'rather than having to retrain the model': rank 4, score 7.258 -> IN TOP 5
+    top1:  11.97  Wikipedia - Retrieval-augmented  | Challenges
+    top2:   7.96  Wikipedia - Retrieval-augmented  | RAG poisoning
+    top3:   7.32  Wikipedia - Retrieval-augmented  | RAG and LLM limitations
+    top4:   7.26  Wikipedia - Retrieval-augmented  | Process
+    top5:   7.18  Wikipedia - Retrieval-augmented  | Introduction
+
+Test 3 two sources: How many attention heads did my A3 model have, and why is multi-head attention easy to parallelize?
+  query words: ['many', 'attention', 'heads', 'a3', 'model', 'multi', 'head', 'attention', 'easy', 'parallelize']
+  expected '2 blocks, 4 heads': rank 25, score 3.576 -> MISSED (not in top 5)
+  expected 'easier to parallelize due to the use of independent heads': rank 1, score 23.233 -> IN TOP 5
+    top1:  23.23  Wikipedia - Transformer architec | Parallelizing attention
+    top2:  16.13  Wikipedia - Transformer architec | Multihead attention
+    top3:  13.83  Wikipedia - Transformer architec | Multi-Query Attention
+    top4:  10.36  Wikipedia - Transformer architec | Introduction
+    top5:   9.81  Wikipedia - Transformer architec | Attention head
+
+Test 4 unsupported: What validation loss did my A3 model reach at 10,000 training steps?
+  query words: ['validation', 'loss', 'a3', 'model', 'reach', '10', '000', 'training', 'steps']
+    top1:  17.15  Custom LLM Assignment README.md  | 3. My runs
+    top2:  14.36  Custom LLM Assignment README.md  | 4. Evidence: samples and loss
+    top3:  13.60  Custom LLM Assignment README.md  | 2. My three choices and prediction
+    top4:  10.90  Custom LLM Assignment README.md  | 4. Evidence: samples and loss
+    top5:   9.38  Custom LLM Assignment README.md  | 5. Evidence: token → ID → vector → probabilit

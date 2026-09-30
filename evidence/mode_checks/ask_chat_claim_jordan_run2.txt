@@ -1,0 +1,15 @@
+wiki ask · model gemma4:e2b-it-qat · mode local
+retrieval: hybrid · 5 passages
+
+Insufficient evidence: the retrieved passages do not answer this question.
+Model's note: The provided passages do not state the answer to the question.
+
+Retrieved passages:
+  [P1] Custom LLM Assignment README.md · 1. Corpus, sources, and permissions · lines 19-29
+  [P2] Custom LLM Assignment README.md · My Custom LLM Experiment (MBA 290T, Assignment 3) · lines 3-10
+  [P3] Custom LLM Assignment README.md · 1. Corpus, sources, and permissions · lines 35-35
+  [P4] Custom LLM Assignment README.md · 2. My three choices and prediction · lines 45-54
+  [P5] Custom LLM Assignment README.md · 4. Evidence: samples and loss · lines 113-122
+
+time: retrieve 0.06 s · generate 2.47 s · total 2.53 s
+saved: evidence/runs/20260929_204739_724_ask.json

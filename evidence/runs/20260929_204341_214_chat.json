@@ -1,0 +1,75 @@
+{
+  "mode": "chat",
+  "execution": "local",
+  "model": "gemma4:e2b-it-qat",
+  "time": "2026-09-29T20:43:41",
+  "session": "20260929_204336",
+  "turn": 1,
+  "message": "draft a 3-sentence update for a teammate about my A3 training setup",
+  "routing": {
+    "needs_notes": true,
+    "search_query": "Custom LLM Training Results",
+    "reason": "The request asks for an update about the A3 training setup, which requires facts from the custom LLM training results notes.",
+    "decided_by": "router model",
+    "router_seconds": 0.93
+  },
+  "retrieval": "hybrid",
+  "retrieved": [
+    {
+      "label": "N1",
+      "id": "src_bc08c49a00:000",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3)",
+      "lines": [
+        3,
+        10
+      ],
+      "text": "A tiny word-level language model: Karpathy's **nanoGPT** (2 blocks, 4 heads,\n64-number embeddings, 48-token context), trained from scratch on CPU. I ran two\nexperiments with identical settings: the supplied **starter corpus**, then the\nstarter corpus plus my own teaching files for **grammar, opposites, and spatial\nrelations**. I ran the fixed 48-case language eval suite before and after training\nin both experiments. This model continues short sentences; it is not a chatbot.\n\n| | Experiment 1: starter | Experiment 2: expanded |\n|---|---|---|\n| Executed notebook | [custom_llm_executed.ipynb](evidence/experiment1_starter/custom_llm_executed.ipynb) | [custom_llm_executed.ipynb](evidence/experiment2_expanded/custom_llm_executed.ipynb) |\n| Run ID | `20260922T234208_948785Z` | `20260923T002406_749786Z` |\n| Full run folder | [evidence/experiment1_starter/run](evidence/experiment1_starter/run) | [evidence/experiment2_expanded/run](evidence/experiment2_expanded/run) |\n| Results ZIP | [ZIP](evidence/experiment1_starter/20260922T234208_948785Z.zip) | [ZIP](evidence/experiment2_expanded/20260923T002406_749786Z.zip) |"
+    },
+    {
+      "label": "N2",
+      "id": "src_bc08c49a00:027",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 10. Reproduce and inspect",
+      "lines": [
+        423,
+        423
+      ],
+      "text": "1. **Local:** `pip install -r requirements.txt` (torch, pypdf, jupyter), open\n   `custom_llm.ipynb`, and choose Run All. **Colab:** open the notebook, run sections 1–2,\n   upload the `corpus/` files to `/content/corpus`, and choose Run All.\n   - Settings are in cell 1: `CORPUS = \"classroom\"`, `TRAINING_STEPS = 3000`, `LEARNING_RATE = 0.001`.\n   - Each run writes a new `llm_runs/<timestamp>/` folder and ZIP.\n2. **Rerun the evals on saved weights** (CPU, a few seconds; use a fresh output folder each time):\n   ```bash\n   python run_evals.py --model evidence/experiment2_expanded/run/model.pt --output results/exp2-final\n   python run_evals.py --model evidence/experiment2_expanded/run/model_untrained.pt --stage untrained --output results/exp2-untrained\n   python run_evals.py --model evidence/experiment1_starter/run/model.pt --output results/exp1-final\n   python run_evals.py --model evidence/experiment1_starter/run/model_untrained.pt --stage untrained --output results/exp1-untrained\n   ```\n3. **Embedding viewer:** open [embedding-viewer.html](embedding-viewer.html) and load a run's `checkpoint.json`.\n4. **Note:** `model.pt` is for inference only, and `checkpoint.json` is for the viewer. Neither can resume training."
+    },
+    {
+      "label": "N3",
+      "id": "src_bc08c49a00:006",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 3. My runs",
+      "lines": [
+        83,
+        95
+      ],
+      "text": "| | Experiment 1 | Experiment 2 |\n|---|---|---|\n| Completed steps | 3,000 / 3,000, not interrupted | 3,000 / 3,000, not interrupted |\n| Training time | 14.1 s | 12.4 s |\n| Hardware | Apple M3 Pro (18 GB), macOS 15.7.4, CPU only, PyTorch 2.14.0, Python 3.11 | same |\n| Parameters | 111,872 | 133,952 (larger embedding table) |\n| Vocabulary | 136 (133 words + `<BOS>` `<EOS>` `<UNK>`) | 481 (478 + 3); 0 types dropped by the 509 cap |\n| Unique passages / split | 4,592 → 4,132 train / 460 validation | 4,947 → 4,452 train / 495 validation |\n| Unknown-token rate, train / held-out | 0.00% / 0.00% | 0.00% / 0.42% |\n| Settings | [config.json](evidence/experiment1_starter/run/config.json), [training_summary.json](evidence/experiment1_starter/run/training_summary.json) | [config.json](evidence/experiment2_expanded/run/config.json), [training_summary.json](evidence/experiment2_expanded/run/training_summary.json) |\n| Vocabulary report | [vocabulary_report.json](evidence/experiment1_starter/run/vocabulary_report.json) | [vocabulary_report.json](evidence/experiment2_expanded/run/vocabulary_report.json) |\n\n- The only earlier run was a 10-step setup smoke test, which is not part of this submission.\n- **Why the Exp 2 held-out unknown-token rate is 0.42%:** 23 of my words appear in only one\n  sentence, and that sentence landed in the 10% validation split (e.g. *swam, wrote, built,\n  kicked, planted*). The model never trained on them.\n- **What the split can test:** it is by passage, not by source file, and held-out sentences\n  share templates with training. So validation loss tests recombining familiar templates,\n  not generalization to new kinds of text."
+    },
+    {
+      "label": "N4",
+      "id": "src_bc08c49a00:003",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 2. My three choices and prediction",
+      "lines": [
+        45,
+        54
+      ],
+      "text": "- **Corpus:** starter first, then starter + the three files above. Nothing else changed.\n- **Training steps: 3,000.** That is enough practice for a model this small to learn the sentence\n  patterns; many more steps would raise the risk of memorizing training sentences.\n  One step = one batch of 32 passages and one weight update, not a full pass\n  (3,000 steps ≈ 23 passes over the 4,132 starter training passages).\n- **Learning rate: 0.001.** That is large enough to make progress within 3,000 steps and small enough\n  to avoid overshooting. The notebook warms the rate up over the first 100 steps and then\n  cosine-decays it to 10% of the peak.\n\n**What I predicted before each run** (full text in cell 2 of each executed notebook):"
+    }
+  ],
+  "history_messages_used": 0,
+  "reply": "Here is a draft update for your teammate:\n\nI've finished running both experiments for the Custom LLM Assignment. Experiment 1 used the starter corpus, while Experiment 2 included my custom teaching files on grammar, opposites, and spatial relations. Both runs completed 3,000 training steps successfully on the Apple M3 Pro, and I'm ready to move on to the evaluation phase.",
+  "citations": [],
+  "citation_problems": [
+    "notes were provided but the reply cites none of them (claims from notes are uncited)"
+  ],
+  "instructions_file": "prompts/persona.md",
+  "seconds": 4.22,
+  "tokens": {
+    "prompt": 2261,
+    "output": 83
+  }
+}

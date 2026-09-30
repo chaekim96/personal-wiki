@@ -1,0 +1,109 @@
+{
+  "mode": "ask",
+  "execution": "local",
+  "model": "gemma4:e2b-it-qat",
+  "time": "2026-09-29T20:48:25",
+  "question": "What validation loss did my A3 model reach at 10,000 training steps?",
+  "retrieval": "hybrid",
+  "k": 5,
+  "retrieved": [
+    {
+      "label": "P1",
+      "id": "src_bc08c49a00:006",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 3. My runs",
+      "lines": [
+        83,
+        95
+      ],
+      "rank": 1,
+      "bm25_rank": 1,
+      "text": "| | Experiment 1 | Experiment 2 |\n|---|---|---|\n| Completed steps | 3,000 / 3,000, not interrupted | 3,000 / 3,000, not interrupted |\n| Training time | 14.1 s | 12.4 s |\n| Hardware | Apple M3 Pro (18 GB), macOS 15.7.4, CPU only, PyTorch 2.14.0, Python 3.11 | same |\n| Parameters | 111,872 | 133,952 (larger embedding table) |\n| Vocabulary | 136 (133 words + `<BOS>` `<EOS>` `<UNK>`) | 481 (478 + 3); 0 types dropped by the 509 cap |\n| Unique passages / split | 4,592 → 4,132 train / 460 validation | 4,947 → 4,452 train / 495 validation |\n| Unknown-token rate, train / held-out | 0.00% / 0.00% | 0.00% / 0.42% |\n| Settings | [config.json](evidence/experiment1_starter/run/config.json), [training_summary.json](evidence/experiment1_starter/run/training_summary.json) | [config.json](evidence/experiment2_expanded/run/config.json), [training_summary.json](evidence/experiment2_expanded/run/training_summary.json) |\n| Vocabulary report | [vocabulary_report.json](evidence/experiment1_starter/run/vocabulary_report.json) | [vocabulary_report.json](evidence/experiment2_expanded/run/vocabulary_report.json) |\n\n- The only earlier run was a 10-step setup smoke test, which is not part of this submission.\n- **Why the Exp 2 held-out unknown-token rate is 0.42%:** 23 of my words appear in only one\n  sentence, and that sentence landed in the 10% validation split (e.g. *swam, wrote, built,\n  kicked, planted*). The model never trained on them.\n- **What the split can test:** it is by passage, not by source file, and held-out sentences\n  share templates with training. So validation loss tests recombining familiar templates,\n  not generalization to new kinds of text.",
+      "dense_rank": 2
+    },
+    {
+      "label": "P2",
+      "id": "src_bc08c49a00:010",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 4. Evidence: samples and loss",
+      "lines": [
+        138,
+        169
+      ],
+      "rank": 2,
+      "bm25_rank": 2,
+      "text": "**Visible change:** from random words to complete template sentences by step 1,500, with\nlittle change after that. In Experiment 1, all 8 halfway and final sentences exist word for word in the\ncorpus, and 2 of them are validation passages the model never trained on. In Experiment 2,\nno sample uses my new material; the new files are only ~7% of the training passages.\n\nStep 0 was word soup. By step 1,500 it wrote full sentences. From 1,500 to 3,000, two\nsamples stayed identical and two changed to other template sentences. There's no quality\ndifference, which matches the flat loss. Extra training didn't buy anything.\n\n**Loss** (fixed panels: **20 training and 20 validation passages**, mean over\nnon-padding next-token targets; these are small estimates, not full-corpus measurements).\nThis is every measured panel value ([Exp 1 history.json](evidence/experiment1_starter/run/history.json),\n[Exp 2 history.json](evidence/experiment2_expanded/run/history.json); same values as CSV:\n[Exp 1 training.csv](evidence/experiment1_starter/run/training.csv),\n[Exp 2 training.csv](evidence/experiment2_expanded/run/training.csv)):\n\n| Experiment | Step | Training loss | Validation loss |\n|---|---|---|---|\n| 1: starter | 0 | 4.926 | 4.928 |\n| 1: starter | 1,500 | 0.682 | 0.718 |\n| 1: starter | 3,000 | 0.678 | 0.706 |\n| 2: expanded | 0 | 6.187 | 6.167 |\n| 2: expanded | 1,500 | 0.801 | 0.970 |\n| 2: expanded | 3,000 | 0.762 | 0.949 |\n\nExperiment 1 curves:\n\n![Experiment 1 training curves](evidence/experiment1_starter/run/training_curves.svg)\n\nExperiment 2 curves:\n\n![Experiment 2 training curves](evidence/experiment2_expanded/run/training_curves.svg)",
+      "dense_rank": 1
+    },
+    {
+      "label": "P3",
+      "id": "src_bc08c49a00:003",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 2. My three choices and prediction",
+      "lines": [
+        45,
+        54
+      ],
+      "rank": 3,
+      "bm25_rank": 3,
+      "text": "- **Corpus:** starter first, then starter + the three files above. Nothing else changed.\n- **Training steps: 3,000.** That is enough practice for a model this small to learn the sentence\n  patterns; many more steps would raise the risk of memorizing training sentences.\n  One step = one batch of 32 passages and one weight update, not a full pass\n  (3,000 steps ≈ 23 passes over the 4,132 starter training passages).\n- **Learning rate: 0.001.** That is large enough to make progress within 3,000 steps and small enough\n  to avoid overshooting. The notebook warms the rate up over the first 100 steps and then\n  cosine-decays it to 10% of the peak.\n\n**What I predicted before each run** (full text in cell 2 of each executed notebook):",
+      "dense_rank": 3
+    },
+    {
+      "label": "P4",
+      "id": "src_bc08c49a00:011",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 4. Evidence: samples and loss",
+      "lines": [
+        171,
+        171
+      ],
+      "rank": 4,
+      "bm25_rank": 4,
+      "text": "- Step-0 loss is about ln(vocabulary size): ln 136 ≈ 4.91, ln 481 ≈ 6.18. That is a uniform guess.\n- Losses from different corpora and vocabularies are not directly comparable.\n- The notebook also printed single-batch losses (Exp 1: 0.761 / 0.717 / 0.692 / 0.701 at\n  steps 500 / 1,000 / 2,000 / 2,500). These come from random batches, not the fixed panels.",
+      "dense_rank": 4
+    },
+    {
+      "label": "P5",
+      "id": "src_bc08c49a00:014",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 5. Evidence: token → ID → vector → probability → gradient → update",
+      "lines": [
+        224,
+        235
+      ],
+      "rank": 5,
+      "bm25_rank": 5,
+      "text": "**Corpus.** The starter corpus teaches a small set of sentence templates: people, actions,\nobjects, in fixed patterns. It doesn't have the vocabulary or multi-sentence patterns the\nextension tests need, because the notebook splits training text at every period. 10% is\nheld out so we can see if the model learned patterns or just memorized. The catch:\nheld-out sentences use the same templates, so it's not a test of anything truly new.\n\n**What makes it a neural network.** The model is 111,872 numbers. Each step, it guesses\nnext words, loss scores how wrong it was, backprop works out which way to nudge every\nnumber, and AdamW makes the nudge. Do that 3,000 times and loss drops from 4.93 (random\nguessing) to 0.68.\n\n**Attention.** Predicting the word after \"the customer,\" the model put 48.5% of its\nattention on `<BOS>` (the start-of-text marker), 42.3% on \"the,\" and 9.2% on \"customer\"\n(one of 8 attention heads). That tells you which earlier words it's leaning on. That makes\nsense: in the corpus, \"the customer\" at the start of a sentence is always followed by a\nverb, but mid-sentence it's followed by \"and\", so knowing it's at the start matters. It\ncan't look ahead because future words are masked. If it could, it would just copy the\nanswer during training instead of learning to predict it.",
+      "dense_rank": 5
+    }
+  ],
+  "model_output_raw": "{\"insufficient\": true, \"answer\": \"The validation loss for Experiment 1 at 3,000 training steps was 0.706 [P2]. The validation loss for Experiment 2 at 3,000 training steps was 0.949 [P2].\", \"citations\": [\"P2\"]}",
+  "insufficient_flag": true,
+  "answer": "The validation loss for Experiment 1 at 3,000 training steps was 0.706 [P2]. The validation loss for Experiment 2 at 3,000 training steps was 0.949 [P2].",
+  "citations": [
+    {
+      "label": "P2",
+      "source": "vault/raw/Custom LLM Assignment README.md",
+      "section": "My Custom LLM Experiment (MBA 290T, Assignment 3) > 4. Evidence: samples and loss",
+      "lines": [
+        138,
+        169
+      ]
+    }
+  ],
+  "status": "insufficient",
+  "citation_problems": [],
+  "timing_s": {
+    "retrieve": 0.05,
+    "generate": 3.45,
+    "total": 3.51
+  },
+  "tokens": {
+    "prompt": 2442,
+    "output": 73
+  },
+  "instructions_file": "prompts/wiki-instructions.md",
+  "chat_history_used": false,
+  "persona_used": false
+}

@@ -1,0 +1,16 @@
+[project]
+name = "personal-wiki"
+version = "0.1.0"
+description = "Personal wiki CLI: local Gemma (Ollama) + RAG over my own notes"
+requires-python = ">=3.11"
+dependencies = []  # standard library only
+
+[project.scripts]
+wiki = "wiki.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["wiki"]
