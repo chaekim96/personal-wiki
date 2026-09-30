@@ -28,7 +28,8 @@ CAPABILITY_HINT = ("The student is asking what you can do. Answer from your 'Wha
                    "conversation, and the wiki ask/search commands. Also say briefly what you cannot do. "
                    "Do not offer anything outside that list. End with one suggested starting point.")
 NO_NOTES_RULES = [         # (pattern, reason) - checked before calling the router
-    (r"^(hi|hello|hey|thanks|thank you|ok|okay|cool|bye)\b", "greeting or small talk"),
+    # only a message that is JUST a greeting ("hello!", "thanks wren") - not "hello, can you draft..."
+    (r"^(hi|hello|hey|thanks|thank you|ok|okay|cool|bye)( there| wren| so much)?[\s!.,?:)]*$", "greeting or small talk"),
     (r"\b(what can (you|we|i) do|what can you help|help me with\?|who are you|what are you|your capabilities)\b",
      CAPABILITY_REASON),
     (r"\b(shorter|longer|shorten|rephrase|rewrite|reword|simpler|more formal|less formal|bullet|as a list)\b.*\b(that|it|this)\b"

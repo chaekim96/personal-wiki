@@ -33,5 +33,7 @@ with the same code and models ([../mode_checks/](../mode_checks/)). The Jordan `
 but in this offline session the claim was never stated in chat.
 
 Small issue seen offline: "hello can you draft a note" was routed as a greeting by the code rule, because it
-starts with "hello". It did not change the reply here (no notes were needed), but the rule should only match
-messages that are just a greeting.
+starts with "hello". It did not change the reply here (no notes were needed).
+**Fixed after the demo** (commit "Fix chat greeting rule"): the rule now only matches a message that is just a
+greeting ("hello", "thanks wren"). A re-run (online) routed "hello can you draft a note" to the router model
+([../runs/20260929_213830_348_chat.json](../runs/20260929_213830_348_chat.json)).
